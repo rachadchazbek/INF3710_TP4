@@ -2,9 +2,9 @@
 
 -- DROP DATABASE IF EXISTS "TP4_Livraison";
 
--- TODO ADD NOT NULL CONSTRAINTS TO RELATIVE FIELDS
 -- TODO ADD UNIQUE CONSTRAINTS TO RELATIVE FIELDS
 -- TODO ADD CHECK CONSTRAINTS TO RELATIVE FIELDS
+-- TODO ADD SERIAL TO RELATIVE FIELDS (IDs and auto-incremented fields)
 
 CREATE DATABASE "TP4_Livraison"
     WITH
@@ -24,12 +24,12 @@ CREATE TABLE IF NOT EXISTS Fournisseur(
 
 CREATE TABLE IF NOT EXISTS Client(
 	numéroclient CHAR(4) PRIMARY KEY,
-	nomclient VARCHAR(20),
-	prénomclient VARCHAR(20),
-	adressecourrielclient VARCHAR(20),
-	rueclient VARCHAR(20),
-	villeclient VARCHAR(20),
-	codepostalclient VARCHAR(20)
+	nomclient VARCHAR(20) NOT NULL,
+	prénomclient VARCHAR(20) NOT NULL,
+	adressecourrielclient VARCHAR(20) NOT NULL,
+	rueclient VARCHAR(20) NOT NULL,
+	villeclient VARCHAR(20) NOT NULL,
+	codepostalclient VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Téléphone(
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Planrepas(
 	fréquence VARCHAR(20),
 	nbrpersonnes INT,
 	nbrcalories INT,
-	prix INT,
+	prix INT NOT NULL,
 	numérofournisseur CHAR(4) NOT NULL, 
 	CONSTRAINT FK_Planrepas_Fournisseur FOREIGN KEY (numérofournisseur) REFERENCES Fournisseur
 );
@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS Végétarien(
 	numéroplan CHAR(4) PRIMARY KEY,
 	typederepas VARCHAR(20),
 	CONSTRAINT FK_Végétarien_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
-
 );
 
 CREATE TABLE IF NOT EXISTS Famille(
@@ -90,14 +89,14 @@ CREATE TABLE IF NOT EXISTS Rapide(
 
 CREATE TABLE IF NOT EXISTS Kitrepas(
 	numérokitrepas CHAR(4) PRIMARY KEY,
-	description VARCHAR(300),
+	description VARCHAR(300) NOT NULL,
 	numéroplan CHAR(4) NOT NULL,
 	CONSTRAINT FK_Kitrepas_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
 );
 
 CREATE TABLE IF NOT EXISTS Ingrédient(
 	numéroingrédient CHAR(4) PRIMARY KEY,
-	nomingrédient VARCHAR(20),
+	nomingrédient VARCHAR(20) NOT NULL,
 	paysingrédient VARCHAR(20)
 );
 
@@ -118,19 +117,19 @@ CREATE TABLE IF NOT EXISTS Image(
 
 CREATE TABLE IF NOT EXISTS Étape(
 	numérokitrepas CHAR(4) PRIMARY KEY,
-	descriptionétape VARCHAR(300),
-	duréeétape VARCHAR(20),
+	descriptionétape VARCHAR(300) NOT NULL,
+	duréeétape VARCHAR(20) NOT NULL,
 	êtreconposéede VARCHAR(20),
 	CONSTRAINT FK_Étape_Kitrepas FOREIGN KEY (numérokitrepas) REFERENCES Kitrepas
 );
 
 INSERT INTO Fournisseur VALUES ('F001', 'UberEats', '9970 Chem. de la Côte-de-Liesse');
 INSERT INTO Fournisseur VALUES ('F002', 'DoorDash', '5995 Boul Gouin O Suite #218');
-INSERT INTO Fournisseur VALUES ('F003', 'FoodForMe');
+INSERT INTO Fournisseur VALUES ('F003', 'FoodForMe', '1000 Rue Sherbrooke O');
 
 INSERT INTO Client VALUES ('C001', 'Tero', 'Fadi', 'faditero@gmail.com', '398 Rue Ouimet', 'Montréal', 'H4L5M9');
 INSERT INTO Client VALUES ('C002', 'Chazbek', 'Rachad', 'rachachazbek@gmail.com', '15 Boulevard La Fayette', 'Longueuil', 'J4K0B2');
-INSERT INTO Client VALUES ('C003', 'Sidi', 'Ahmed', 'ahmed.sidi@polymtl.ca', NULL, 'Montréal', NULL);
+INSERT INTO Client VALUES ('C003', 'Sidi', 'Ahmed', 'ahmed.sidi@polymtl.ca', '2345 Boulevard Édouart Mon Petit', 'Montréal', 'H3H3H3');
 
 INSERT INTO Téléphone VALUES ('C001', '514-111-1111');
 INSERT INTO Téléphone VALUES ('C002', '514-561-7179');
@@ -138,8 +137,8 @@ INSERT INTO Téléphone VALUES ('C003', '514-568-1345');
 
 INSERT INTO Planrepas VALUES ('P001', 'Méditéranien', '2 Fois par semaine', 1, 1000, 10, 'F001');
 INSERT INTO Planrepas VALUES ('P001', 'FastFood', '1 Fois par semaine', 1, 2000, 10, 'F001');
-INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', NULL, NULL, 15, 'F002');
-INSERT INTO Planrepas VALUES ('P003', 'Healthy', NULL, 1, 2000, 20, 'F003');
+INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
+INSERT INTO Planrepas VALUES ('P003', 'Healthy', '3 Fois par semaine', 1, 2000, 20, 'F003');
 INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
 
 INSERT INTO Abonner VALUES ('C001', 'P001', '1 Mois');
@@ -165,7 +164,7 @@ INSERT INTO Rapide VALUES ('P004');
 
 INSERT INTO Kitrepas VALUES ('K001', 'Savoureux', 'P001');
 INSERT INTO Kitrepas VALUES ('K002', 'Sweet et Crémeux!', 'P002');
-INSERT INTO Kitrepas VALUES ('K003', NULL, 'P003');
+INSERT INTO Kitrepas VALUES ('K003', 'Sweet', 'P003');
 INSERT INTO Kitrepas VALUES ('K004', 'Suprise!', 'P004');
 
 INSERT INTO Ingrédient VALUES ('I001', 'Chili', 'Mexique');
@@ -174,7 +173,7 @@ INSERT INTO Ingrédient VALUES ('I003', 'Riz', 'Chine');
 INSERT INTO Ingrédient VALUES ('I004', 'Tomate', 'Italie');
 INSERT INTO Ingrédient VALUES ('I005', 'Farine', 'France');
 INSERT INTO Ingrédient VALUES ('I006', 'Poulet', 'États-Unis');
-INSERT INTO Ingrédient VALUES ('I007', 'Poisson', NULL);
+INSERT INTO Ingrédient VALUES ('I007', 'Poisson', 'États-Unis');
 
 INSERT INTO Contenir VALUES ('I001', 'K001');
 INSERT INTO Contenir VALUES ('I002', 'K001');
