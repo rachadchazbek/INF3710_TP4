@@ -2,6 +2,10 @@
 
 -- DROP DATABASE IF EXISTS "TP4_Livraison";
 
+-- TODO ADD NOT NULL CONSTRAINTS TO RELATIVE FIELDS
+-- TODO ADD UNIQUE CONSTRAINTS TO RELATIVE FIELDS
+-- TODO ADD CHECK CONSTRAINTS TO RELATIVE FIELDS
+
 CREATE DATABASE "TP4_Livraison"
     WITH
     OWNER = postgres
@@ -119,3 +123,78 @@ CREATE TABLE IF NOT EXISTS Étape(
 	êtreconposéede VARCHAR(20),
 	CONSTRAINT FK_Étape_Kitrepas FOREIGN KEY (numérokitrepas) REFERENCES Kitrepas
 );
+
+INSERT INTO Fournisseur VALUES ('F001', 'UberEats', '9970 Chem. de la Côte-de-Liesse');
+INSERT INTO Fournisseur VALUES ('F002', 'DoorDash', '5995 Boul Gouin O Suite #218');
+INSERT INTO Fournisseur VALUES ('F003', 'FoodForMe');
+
+INSERT INTO Client VALUES ('C001', 'Tero', 'Fadi', 'faditero@gmail.com', '398 Rue Ouimet', 'Montréal', 'H4L5M9');
+INSERT INTO Client VALUES ('C002', 'Chazbek', 'Rachad', 'rachachazbek@gmail.com', '15 Boulevard La Fayette', 'Longueuil', 'J4K0B2');
+INSERT INTO Client VALUES ('C003', 'Sidi', 'Ahmed', 'ahmed.sidi@polymtl.ca', NULL, 'Montréal', NULL);
+
+INSERT INTO Téléphone VALUES ('C001', '514-111-1111');
+INSERT INTO Téléphone VALUES ('C002', '514-561-7179');
+INSERT INTO Téléphone VALUES ('C003', '514-568-1345');
+
+INSERT INTO Planrepas VALUES ('P001', 'Méditéranien', '2 Fois par semaine', 1, 1000, 10, 'F001');
+INSERT INTO Planrepas VALUES ('P001', 'FastFood', '1 Fois par semaine', 1, 2000, 10, 'F001');
+INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', NULL, NULL, 15, 'F002');
+INSERT INTO Planrepas VALUES ('P003', 'Healthy', NULL, 1, 2000, 20, 'F003');
+INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
+
+INSERT INTO Abonner VALUES ('C001', 'P001', '1 Mois');
+INSERT INTO Abonner VALUES ('C001', 'P002', '1 Mois');
+INSERT INTO Abonner VALUES ('C001', 'P003', '3 Semaines');
+INSERT INTO Abonner VALUES ('C002', 'P001', '2 Semaines');
+INSERT INTO Abonner VALUES ('C003', 'P003', '1 An');
+
+INSERT INTO Pescétarien VALUES ('P001', 'Saumon');
+INSERT INTO Pescétarien VALUES ('P002', 'Truite');
+
+INSERT INTO Végétarien VALUES ('P002', 'Lasagne aux Épinards');
+INSERT INTO Végétarien VALUES ('P003', 'Salade de Quinoa');
+
+INSERT INTO Famille VALUES ('P002');
+INSERT INTO Famille VALUES ('P003');
+
+INSERT INTO Facile VALUES ('P001');
+INSERT INTO Facile VALUES ('P002');
+
+INSERT INTO Rapide VALUES ('P001');
+INSERT INTO Rapide VALUES ('P004');
+
+INSERT INTO Kitrepas VALUES ('K001', 'Savoureux', 'P001');
+INSERT INTO Kitrepas VALUES ('K002', 'Sweet et Crémeux!', 'P002');
+INSERT INTO Kitrepas VALUES ('K003', NULL, 'P003');
+INSERT INTO Kitrepas VALUES ('K004', 'Suprise!', 'P004');
+
+INSERT INTO Ingrédient VALUES ('I001', 'Chili', 'Mexique');
+INSERT INTO Ingrédient VALUES ('I002', 'Cury', 'Inde');
+INSERT INTO Ingrédient VALUES ('I003', 'Riz', 'Chine');
+INSERT INTO Ingrédient VALUES ('I004', 'Tomate', 'Italie');
+INSERT INTO Ingrédient VALUES ('I005', 'Farine', 'France');
+INSERT INTO Ingrédient VALUES ('I006', 'Poulet', 'États-Unis');
+INSERT INTO Ingrédient VALUES ('I007', 'Poisson', NULL);
+
+INSERT INTO Contenir VALUES ('I001', 'K001');
+INSERT INTO Contenir VALUES ('I002', 'K001');
+INSERT INTO Contenir VALUES ('I003', 'K001');
+INSERT INTO Contenir VALUES ('I004', 'K002');
+INSERT INTO Contenir VALUES ('I005', 'K002');
+INSERT INTO Contenir VALUES ('I006', 'K002');
+INSERT INTO Contenir VALUES ('I004', 'K003');
+INSERT INTO Contenir VALUES ('I007', 'K003');
+INSERT INTO Contenir VALUES ('I001', 'K004');
+INSERT INTO Contenir VALUES ('I002', 'K004');
+INSERT INTO Contenir VALUES ('I007', 'K004');
+
+INSERT INTO Image VALUES ('Im001', '0x12AB31C4', 'K001');
+INSERT INTO Image VALUES ('Im002', '0x95DB42B4', 'K002');
+INSERT INTO Image VALUES ('Im003', '0xABD21457', 'K003');
+INSERT INTO Image VALUES ('Im004', '0x12AB31C4', 'K004');
+
+INSERT INTO Étape VALUES ('K001', 'Couper les légumes en des morceaux', '5 minutes', 'Être composé de 4 étapes');
+INSERT INTO Étape VALUES ('K001', 'Cuire les légumes avec un peux de graisse à vos choix', '7 minutes', 'Être composé de 2 étapes');
+INSERT INTO Étape VALUES ('K002', 'Prépare la sauce teriaki', '3 heures', 'Être composé de 2 étapes');
+INSERT INTO Étape VALUES ('K003', 'Mariné le Saumon avec votre sauce pendant toute la nuit', '2 heures', NULL);
+INSERT INTO Étape VALUES ('K004', 'Ajouter du soy sauce', 'Instant', NULL);
