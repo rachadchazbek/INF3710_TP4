@@ -2,6 +2,7 @@ import * as http from "http";
 import { inject, injectable } from "inversify";
 import { AddressInfo } from "net";
 import { Application } from "./app";
+import { DatabaseService } from "./services/database.service";
 import Types from "./types";
 
 @injectable()
@@ -9,6 +10,7 @@ export class Server {
   private readonly appPort: string | number | boolean = this.normalizePort(process.env.PORT || "3000");
   private readonly baseDix: number = 10;
   private server: http.Server;
+  private dataBase: DatabaseService;
 
   public constructor(@inject(Types.Application) private application: Application) {}
 
@@ -16,6 +18,7 @@ export class Server {
     this.application.app.set("port", this.appPort);
 
     this.server = http.createServer(this.application.app);
+    this.dataBase = new DatabaseService();
 
     this.server.listen(this.appPort);
     this.server.on("error", (error: NodeJS.ErrnoException) => this.onError(error));
