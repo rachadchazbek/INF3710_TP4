@@ -17,15 +17,32 @@ const express_1 = require("express");
 const inversify_1 = require("inversify");
 const database_service_1 = require("../services/database.service");
 const types_1 = require("../types");
+const HTTP_OK = 200;
+// const HTTP_CREATED = 201;
+// const HTTP_ERROR = 404;
+// const HTTP_BAD_REQUEST = 400;
 let DatabaseController = class DatabaseController {
     constructor(
     // @ts-ignore -- À ENLEVER LORSQUE L'IMPLÉMENTATION EST TERMINÉE
     databaseService) {
         this.databaseService = databaseService;
+        this.configureRouter();
     }
     get router() {
         const router = (0, express_1.Router)();
         return router;
+    }
+    configureRouter() {
+        this.router;
+        this.router.get('/planrepas', (req, res) => {
+            res.status(HTTP_OK).json(this.databaseService.get);
+        });
+        this.router.post('/planRepas', (req, res) => {
+            res.status(HTTP_OK).json(this.databaseService);
+        });
+        this.router.delete('/', (req, res) => {
+            res.status(HTTP_OK).json(this.databaseService);
+        });
     }
 };
 DatabaseController = __decorate([

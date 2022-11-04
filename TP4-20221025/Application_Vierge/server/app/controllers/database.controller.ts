@@ -5,9 +5,9 @@ import Types from "../types";
 
 
 const HTTP_OK = 200;
-const HTTP_CREATED = 201;
-const HTTP_ERROR = 404;
-const HTTP_BAD_REQUEST = 400;
+// const HTTP_CREATED = 201;
+// const HTTP_ERROR = 404;
+// const HTTP_BAD_REQUEST = 400;
 
 @injectable()
 export class DatabaseController {
@@ -34,11 +34,5 @@ export class DatabaseController {
        this.router.delete('/', (req, res) => {
         res.status(HTTP_OK).json(this.databaseService);
         });
-}
-}
-
   }
-
-
-
 }
