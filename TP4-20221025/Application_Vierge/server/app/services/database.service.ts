@@ -12,6 +12,19 @@ export class DatabaseService {
     host: "127.0.0.1",
     keepAlive: true
   };
+  constructor(){
+    await this.get();
+  }
+
 
   public pool: pg.Pool = new pg.Pool(this.connectionConfig);
+  
+
+  public async get(): Promise<pg.QueryResult> { 
+    const client = await this.pool.connect();
+    const res = await client.query(`SELECT * from Client; `); \
+    console.log(res);
+    client.release();
+    return res;
+
 }
