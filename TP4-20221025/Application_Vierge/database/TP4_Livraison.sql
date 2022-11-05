@@ -125,7 +125,8 @@ CREATE TABLE IF NOT EXISTS Étape(
 
 INSERT INTO Fournisseur VALUES ('F001', 'UberEats', '9970 Chem. de la Côte-de-Liesse');
 INSERT INTO Fournisseur VALUES ('F002', 'DoorDash', '5995 Boul Gouin O Suite #218');
-INSERT INTO Fournisseur VALUES ('F003', 'FoodForMe', '1000 Rue Sherbrooke O');
+INSERT INTO Fournisseur VALUES ('F003', 'AB Transport', '1000 Rue Sherbrooke O');
+INSERT INTO Fournisseur VALUES ('F004', 'QC Transport', '234 Rue Sainte-Catherine');
 
 INSERT INTO Client VALUES ('C001', 'Tero', 'Fadi', 'faditero@gmail.com', '398 Rue Ouimet', 'Montréal', 'H4L5M9');
 INSERT INTO Client VALUES ('C002', 'Chazbek', 'Rachad', 'rachachazbek@gmail.com', '15 Boulevard La Fayette', 'Longueuil', 'J4K0B2');
@@ -139,12 +140,14 @@ INSERT INTO Planrepas VALUES ('P001', 'Méditéranien', '2 Fois par semaine', 1,
 INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
 INSERT INTO Planrepas VALUES ('P003', 'cétogène', '3 Fois par semaine', 1, 2000, 20, 'F003');
 INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
+INSERT INTO Planrepas VALUES ('P005', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
 
 INSERT INTO Abonner VALUES ('C001', 'P001', '1 Mois');
-INSERT INTO Abonner VALUES ('C001', 'P002', '1 Mois');
+INSERT INTO Abonner VALUES ('C001', 'P004', '1 Mois');
 INSERT INTO Abonner VALUES ('C001', 'P003', '3 Semaines');
-INSERT INTO Abonner VALUES ('C002', 'P001', '2 Semaines');
+INSERT INTO Abonner VALUES ('C002', 'P002', '2 Semaines');
 INSERT INTO Abonner VALUES ('C003', 'P003', '1 An');
+INSERT INTO Abonner VALUES ('C002', 'P005', '4 Semaines');
 
 INSERT INTO Pescétarien VALUES ('P001', 'Saumon');
 INSERT INTO Pescétarien VALUES ('P002', 'Truite');
@@ -163,6 +166,7 @@ INSERT INTO Kitrepas VALUES ('K001', 'Savoureux', 'P001');
 INSERT INTO Kitrepas VALUES ('K002', 'Sweet et Crémeux!', 'P002');
 INSERT INTO Kitrepas VALUES ('K003', 'Sweet', 'P003');
 INSERT INTO Kitrepas VALUES ('K004', 'Suprise!', 'P004');
+INSERT INTO Kitrepas VALUES ('K005', 'Basic', 'P007');
 
 INSERT INTO Ingrédient VALUES ('I001', 'Chili', 'Mexique');
 INSERT INTO Ingrédient VALUES ('I002', 'Cury', 'Inde');
