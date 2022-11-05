@@ -17,7 +17,7 @@ CREATE DATABASE "TP4_Livraison"
     IS_TEMPLATE = False;
 
 CREATE TABLE IF NOT EXISTS Fournisseur(
-	numérofournissuer CHAR(4) PRIMARY KEY,
+	numérofournisseur CHAR(4) PRIMARY KEY,
 	nomfournisseur VARCHAR(20),
 	adressefournisseur VARCHAR(200)
 );

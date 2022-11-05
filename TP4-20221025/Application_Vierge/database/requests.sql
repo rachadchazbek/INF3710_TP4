@@ -8,10 +8,9 @@ WHERE C.numéroclient = A.numéroclient AND A.numéroplan = P.numéroplan AND P.
 -- 4.2- Afficher les numéros des plans repas (numéroplan) qui ne proviennent pas du fournisseur au nom de 
 -- 'QC Transport'. (2pts) 
 
--- Error in PostGres request
--- SELECT P.numéroplan
--- FROM Planrepas P, Fournisseur F
--- WHERE P.numérofournisseur = F.numérofournisseur AND F.nomfournisseur != 'QC Transport';
+SELECT P.numéroplan
+FROM Planrepas P, Fournisseur F
+WHERE P.numérofournisseur = F.numérofournisseur AND F.nomfournisseur != 'QC Transport';
 
 -- 4.3-  Affichez  la  liste  des  numéros  des  plans  Famille  (numéroplan)  dont  la  catégorie  du  plan  repas 
 -- correspond à 'cétogène'. (2pts) 
@@ -26,6 +25,11 @@ Where nomfournisseur IS NULL
 
 -- 4.5- Affichez les noms des fournisseurs (nomfournisseur) ayant fait des livraisons de plans repas dont le 
 -- montant est supérieur aux livraisons faites par le fournisseur dont le nom est 'AB Transport'. (2pts) 
+SELECT F.nomfournisseur
+FROM Fournisseur F, Planrepas P
+WHERE F.numérofournisseur = P.numérofournisseur AND P.prix > (SELECT P.prix FROM Fournisseur F, Planrepas P WHERE F.nomfournisseur = 'AB Transport' AND F.numérofournisseur = P.numérofournisseur);
+
+
 -- 4.6- Affichez les noms des fournisseurs (nomfournisseur), les adresses (adressefournisseur) et le montant 
 -- total des prix des livraisons de plans repas des fournisseurs ayant les deux plus larges montants de livraison 
 -- sur la plateforme. (2pts) 
