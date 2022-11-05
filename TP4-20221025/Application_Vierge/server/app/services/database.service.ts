@@ -15,13 +15,20 @@ export class DatabaseService {
 
   public pool: pg.Pool = new pg.Pool(this.connectionConfig);
   
-  public async get(): Promise<pg.QueryResult> { 
+  // === Debug ===
+  public async poolDemo(): Promise<pg.QueryResult> { 
     const client = await this.pool.connect();
-    const res = await client.query(`SELECT * from Client; `); 
+    const res = await client.query(`SELECT NOW();`); 
     console.log(res);
     client.release();
     return res;
   }
-
+   
 }
 
+
+(async () => {
+  const db = new DatabaseService();
+  const poolResult = await db.poolDemo();
+  console.log("Time with pool: " + poolResult.rows[0]["now"]);
+})();

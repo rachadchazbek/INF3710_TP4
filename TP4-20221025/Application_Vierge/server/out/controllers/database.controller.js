@@ -35,7 +35,7 @@ let DatabaseController = class DatabaseController {
     configureRouter() {
         this.router;
         this.router.get('/planrepas', (req, res) => {
-            res.status(HTTP_OK).json(this.databaseService.get);
+            res.status(HTTP_OK).json(this.databaseService.poolDemo());
         });
         this.router.post('/planRepas', (req, res) => {
             res.status(HTTP_OK).json(this.databaseService);
