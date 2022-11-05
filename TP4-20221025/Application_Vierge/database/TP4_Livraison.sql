@@ -19,15 +19,15 @@ CREATE DATABASE "TP4_Livraison"
 CREATE TABLE IF NOT EXISTS Fournisseur(
 	numérofournissuer CHAR(4) PRIMARY KEY,
 	nomfournisseur VARCHAR(20),
-	adressefournisseur VARCHAR(20)
+	adressefournisseur VARCHAR(200)
 );
 
 CREATE TABLE IF NOT EXISTS Client(
 	numéroclient CHAR(4) PRIMARY KEY,
 	nomclient VARCHAR(20) NOT NULL,
 	prénomclient VARCHAR(20) NOT NULL,
-	adressecourrielclient VARCHAR(20) NOT NULL,
-	rueclient VARCHAR(20) NOT NULL,
+	adressecourrielclient VARCHAR(200) NOT NULL,
+	rueclient VARCHAR(200) NOT NULL,
 	villeclient VARCHAR(20) NOT NULL,
 	codepostalclient VARCHAR(20) NOT NULL
 );
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Téléphone(
 	numéroclient CHAR(4),
 	numérodetéléphone VARCHAR(15),
 	PRIMARY KEY (numérodetéléphone, numéroclient),
-	CONSTRAINT FK_Téléphne_Client FOREIGN KEY (numérodetéléphone) REFERENCES Client
+	CONSTRAINT FK_Téléphne_Client FOREIGN KEY (numéroclient) REFERENCES Client
 );
 
 CREATE TABLE IF NOT EXISTS Planrepas(
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS Contenir(
 );
 
 CREATE TABLE IF NOT EXISTS Image(
-	numéroimage CHAR(4) PRIMARY KEY,
+	numéroimage CHAR(5) PRIMARY KEY,
 	données VARCHAR(300),
 	numérokitrepas CHAR(4) NOT NULL,
 	CONSTRAINT FK_Image_Kitrepas FOREIGN KEY (numérokitrepas) REFERENCES Kitrepas
@@ -135,10 +135,9 @@ INSERT INTO Téléphone VALUES ('C001', '514-111-1111');
 INSERT INTO Téléphone VALUES ('C002', '514-561-7179');
 INSERT INTO Téléphone VALUES ('C003', '514-568-1345');
 
-INSERT INTO Planrepas VALUES ('P001', 'Méditéranien', '2 Fois par semaine', 1, 1000, 10, 'F001');
-INSERT INTO Planrepas VALUES ('P001', 'FastFood', '1 Fois par semaine', 1, 2000, 10, 'F001');
+INSERT INTO Planrepas VALUES ('P001', 'Méditéranien', '2 Fois par semaine', 1, 1000, 25, 'F001');
 INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
-INSERT INTO Planrepas VALUES ('P003', 'Healthy', '3 Fois par semaine', 1, 2000, 20, 'F003');
+INSERT INTO Planrepas VALUES ('P003', 'cétogène', '3 Fois par semaine', 1, 2000, 20, 'F003');
 INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
 
 INSERT INTO Abonner VALUES ('C001', 'P001', '1 Mois');
@@ -156,11 +155,9 @@ INSERT INTO Végétarien VALUES ('P003', 'Salade de Quinoa');
 INSERT INTO Famille VALUES ('P002');
 INSERT INTO Famille VALUES ('P003');
 
-INSERT INTO Facile VALUES ('P001');
 INSERT INTO Facile VALUES ('P002');
 
-INSERT INTO Rapide VALUES ('P001');
-INSERT INTO Rapide VALUES ('P004');
+INSERT INTO Rapide VALUES ('P003');
 
 INSERT INTO Kitrepas VALUES ('K001', 'Savoureux', 'P001');
 INSERT INTO Kitrepas VALUES ('K002', 'Sweet et Crémeux!', 'P002');
@@ -192,8 +189,7 @@ INSERT INTO Image VALUES ('Im002', '0x95DB42B4', 'K002');
 INSERT INTO Image VALUES ('Im003', '0xABD21457', 'K003');
 INSERT INTO Image VALUES ('Im004', '0x12AB31C4', 'K004');
 
-INSERT INTO Étape VALUES ('K001', 'Couper les légumes en des morceaux', '5 minutes', 'Être composé de 4 étapes');
-INSERT INTO Étape VALUES ('K001', 'Cuire les légumes avec un peux de graisse à vos choix', '7 minutes', 'Être composé de 2 étapes');
-INSERT INTO Étape VALUES ('K002', 'Prépare la sauce teriaki', '3 heures', 'Être composé de 2 étapes');
+INSERT INTO Étape VALUES ('K001', 'Couper les légumes en des morceaux', '5 minutes', '4 étapes');
+INSERT INTO Étape VALUES ('K002', 'Prépare la sauce teriaki', '3 heures', '2 étapes');
 INSERT INTO Étape VALUES ('K003', 'Mariné le Saumon avec votre sauce pendant toute la nuit', '2 heures', NULL);
 INSERT INTO Étape VALUES ('K004', 'Ajouter du soy sauce', 'Instant', NULL);

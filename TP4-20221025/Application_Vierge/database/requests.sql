@@ -1,17 +1,29 @@
 -- 4.1- Affichez les numéros (numéroclient) et les noms (nomclient) des clients qui ont commandé un repas 
 -- avec un prix compris entre 20 dollars et 40 dollars.  (2pts) 
-
-
-
-
+SELECT C.numéroclient, C.nomclient 
+FROM Client C, Abonner A, Planrepas P
+WHERE C.numéroclient = A.numéroclient AND A.numéroplan = P.numéroplan AND P.prix BETWEEN 20 AND 40;
 
 
 -- 4.2- Afficher les numéros des plans repas (numéroplan) qui ne proviennent pas du fournisseur au nom de 
 -- 'QC Transport'. (2pts) 
+
+-- Error in PostGres request
+-- SELECT P.numéroplan
+-- FROM Planrepas P, Fournisseur F
+-- WHERE P.numérofournisseur = F.numérofournisseur AND F.nomfournisseur != 'QC Transport';
+
 -- 4.3-  Affichez  la  liste  des  numéros  des  plans  Famille  (numéroplan)  dont  la  catégorie  du  plan  repas 
 -- correspond à 'cétogène'. (2pts) 
+SELECT F.numéroplan 
+FROM Famille F, Planrepas P
+WHERE P.numéroplan = F.numéroplan AND P.catégorie = 'cétogène';
+
 -- 4.4- Affichez le nombre de fournisseurs n’ayant pas de nom dans leur dossier (la valeur de nomfournisseur 
 -- est NULL). (2pts) 
+SELECT count(*) FROM fournisseur
+Where nomfournisseur IS NULL
+
 -- 4.5- Affichez les noms des fournisseurs (nomfournisseur) ayant fait des livraisons de plans repas dont le 
 -- montant est supérieur aux livraisons faites par le fournisseur dont le nom est 'AB Transport'. (2pts) 
 -- 4.6- Affichez les noms des fournisseurs (nomfournisseur), les adresses (adressefournisseur) et le montant 
