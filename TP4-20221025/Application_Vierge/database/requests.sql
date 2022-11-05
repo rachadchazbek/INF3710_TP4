@@ -46,7 +46,12 @@ WHERE K.numéroplan NOT IN (SELECT P.numéroplan FROM Planrepas P);
 -- 4.8- Affichez les numéros (numéroclient), les noms (nomclient) et les prénoms (prénomclient) des clients 
 -- dont  le  prénom  ne  commence  pas  par  une  voyelle  (en  majuscule  ou  en  minuscule)  et qu’ils habitent 
 -- (villeclient)  à  la  même  adresse  (adressefournisseur)  que  le  fournisseur  'Benjamin'.  Ordonnez  ces  clients 
--- alphabétiquement selon le nom. (2pts) 
+-- alphabétiquement selon le nom. (2pts)
+
+--PostGre error
+SELECT C.numéroclient, C.nomclient, C.prénomclient
+FROM Client C, Fournisseur F
+WHERE C.villeclient = F.villefournisseur AND C.adresseclient = F.adressefournisseur AND F.nomfournisseur = 'Benjamin' AND C.prénomclient NOT REGEXP '^[aeiouyAEIOUY]';
 
 -- 4.9-  Affichez  le  pays  des  ingrédients  (paysingrédient)  et  le  nombre  d’ingrédients  par  pays  dont  le 
 -- paysingrédient ne contient pas la lettre g à la troisième position de la fin; triés par ordre décroissant selon 
@@ -62,4 +67,12 @@ ORDER BY I.paysingrédient DESC;
 -- vue  doit  uniquement  contenir  les  fournisseurs  dont  V_tot  est  supérieur  à  12  500$  et  dont  le  nom  de  la 
 -- catégorie du plan repas contient la lettre 'e' et la lettre 'o' à la troisième position de la fin; triés par ordre 
 -- croissant  selon  le  nom  de  la  catégorie  du  plan  repas  et  par  ordre  décroissant  selon  'V_tot'.  Finalement, 
--- afficher le résultat de cette vue. 5pt
+-- afficher le résultat de cette vue. 5pts 
+CREATE VIEW V_fournisseur
+AS
+SELECT P.catégorie AS 'V_catégorie', F.adressefournisseur AS 'V_adresse', SUM(P.prix) AS 'V_tot' 
+FROM Fournisseur F, Planrepas P
+WHERE F.numérofournisseur = P.numérofournisseur AND P.catégorie LIKE '%e__o%' --Check if the category contains the letters 'e' and 'o' at the third position of the end
+GROUP BY P.catégorie, F.adressefournisseur --Group by the category and the address
+HAVING SUM(P.prix) > 12500 --Having the sum of the prices greater than 12500$
+ORDER BY P.catégorie ASC, V_tot DESC; --Order by the category and the sum of the prices
