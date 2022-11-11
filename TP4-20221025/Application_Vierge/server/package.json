@@ -33,7 +33,7 @@
       "text"
     ],
     "all": true,
-    "cache": true,
+    "cache": false,
     "sourceMap": true,
     "instrument": true
   },
