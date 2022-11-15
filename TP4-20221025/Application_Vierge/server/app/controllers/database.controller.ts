@@ -17,26 +17,26 @@ export class DatabaseController {
   ) {
     this.configureRouter();
   }
-  
+
   // public get router(): Router {
   //   const router: Router = Router();
   //   return router;
   // }
   private configureRouter(): void {
-        this.router = Router();
-  
-  
-        this.router.get('/planrepas', (req, res) => {
-            console.log("GET /");
-            // this.databaseService.poolDemo();
-            res.status(200);
-            // res.status(HTTP_OK).json(this.databaseService.poolDemo());
-        });
-        this.router.post('/planRepas', (req, res) => {
-          res.status(HTTP_OK).json(this.databaseService);
-        });
-       this.router.delete('/', (req, res) => {
-        res.status(HTTP_OK).json(this.databaseService);
-        });
+    this.router = Router();
+
+
+    this.router.get('/planrepas', (req, res) => {
+      // this.databaseService.poolDemo();
+      res.status(200);
+      res.send(this.databaseService.poolDemo());
+      // res.status(HTTP_OK).json(this.databaseService.poolDemo());
+    });
+    this.router.post('/planRepas', (req, res) => {
+      res.status(HTTP_OK).json(this.databaseService);
+    });
+    this.router.delete('/', (req, res) => {
+      res.status(HTTP_OK).json(this.databaseService);
+    });
   }
 }
