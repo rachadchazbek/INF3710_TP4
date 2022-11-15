@@ -44,7 +44,7 @@ export class DatabaseService {
   // === get all planrepas ===
   public async getAllPlanRepas(): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
-    const res = await client.query(`SELECT * FROM planrepas;`);
+    const res = await client.query(`SELECT * FROM Planrepas;`);
     client.release();
     return res;
   }

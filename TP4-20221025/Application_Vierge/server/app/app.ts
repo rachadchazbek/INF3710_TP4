@@ -29,11 +29,12 @@ export class Application {
 
   public bindRoutes(): void {
     // Notre application utilise le routeur de notre API
-    this.app.use("/database", this.databaseController.router);
+    this.app.use("/api", this.databaseController.router);
     this.errorHandeling();
   }
 
   private errorHandeling(): void {
+
     // Gestion des erreurs
     this.app.use((_req: express.Request, _res: express.Response, next: express.NextFunction) => {
       const err: Error = new Error("Not Found");

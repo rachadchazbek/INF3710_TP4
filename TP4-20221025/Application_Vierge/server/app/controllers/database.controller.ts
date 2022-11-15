@@ -11,22 +11,26 @@ const HTTP_OK = 200;
 
 @injectable()
 export class DatabaseController {
+  router: Router;
   public constructor(
-    // @ts-ignore -- À ENLEVER LORSQUE L'IMPLÉMENTATION EST TERMINÉE
     @inject(Types.DatabaseService) private readonly databaseService: DatabaseService
   ) {
     this.configureRouter();
   }
   
-  public get router(): Router {
-    const router: Router = Router();
-    return router;
-  }
+  // public get router(): Router {
+  //   const router: Router = Router();
+  //   return router;
+  // }
   private configureRouter(): void {
-        this.router
+        this.router = Router();
+  
   
         this.router.get('/planrepas', (req, res) => {
-            res.status(HTTP_OK).json(this.databaseService.poolDemo());
+            console.log("GET /");
+            // this.databaseService.poolDemo();
+            res.status(200);
+            // res.status(HTTP_OK).json(this.databaseService.poolDemo());
         });
         this.router.post('/planRepas', (req, res) => {
           res.status(HTTP_OK).json(this.databaseService);
