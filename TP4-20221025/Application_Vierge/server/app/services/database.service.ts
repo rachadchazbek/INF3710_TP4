@@ -27,7 +27,7 @@ export class DatabaseService {
   }
 
   // === PlanRepas ===
-  public async getPlanRepas(numeroplan: number): Promise<pg.QueryResult> {
+  public async getPlanRepas(numeroplan: string): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
 
     if (!numeroplan)
