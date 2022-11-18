@@ -1,4 +1,4 @@
-import { CONNEXTION_CONFIG } from "connectionConfig";
+import { CONNEXTION_CONFIG } from "@app/connectionConfig";
 import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
