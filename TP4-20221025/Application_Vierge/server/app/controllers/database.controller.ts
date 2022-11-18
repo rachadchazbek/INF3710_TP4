@@ -16,59 +16,70 @@ export class DatabaseController {
     @inject(Types.DatabaseService) private readonly databaseService: DatabaseService
   ) {
     this.configureRouter();
-    
+
   }
-  
-  private  configureRouter(): void {
-        this.router = Router();
-        this.router.get('/', async (req, res) => {
-          try{
-            const allPlanRepas =await this.databaseService.getAllPlanRepas();
-            console.log(allPlanRepas);
-            res.status(HTTP_OK).json(allPlanRepas);
-          }
-          catch{
-            console.log("Catch")
-            res.status(HTTP_ERROR);
-          }
-        });
 
-        this.router.post('/', async (req, res) => {
-          try{
-            await this.databaseService.createPlanRepas(req.body);
-            res.status(HTTP_CREATED);
-          }
-          catch {
-            res.status(HTTP_ERROR);
-          }
-           
-        });
+  private configureRouter(): void {
+    this.router = Router();
+    this.router.get('/', async (req, res) => {
+      try {
+        const allPlanRepas = await this.databaseService.getAllPlanRepas();
+        console.log(allPlanRepas.rows);
+        res.status(HTTP_OK).json(allPlanRepas.rows);
+      }
+      catch {
+        console.log("Catch")
+        res.status(HTTP_ERROR);
+      }
+    });
 
-        this.router.patch('/', (req, res) => {
-          try{
-            this.databaseService.updatePlanRepas(req.body);
-            res.status(HTTP_CREATED);
-          }
-          catch{
-            res.status(HTTP_ERROR);
-          }
-       });
+    this.router.get('/:numeroplan', async (req, res) => {
+      try {
+        const planRepas = await this.databaseService.getPlanRepas(req.params.numeroplan);
+        console.log(planRepas.rows);
+        res.status(HTTP_OK).json(planRepas.rows);
+      }
+      catch {
+        res.status(HTTP_ERROR);
+      }
+    });
 
-       this.router.delete('/', (req, res) => {
-        this.databaseService.deletePlanRepas(req.body);
+    this.router.post('/', async (req, res) => {
+      try {
+        await this.databaseService.createPlanRepas(req.body);
+        res.status(HTTP_CREATED);
+      }
+      catch {
+        res.status(HTTP_ERROR);
+      }
+
+    });
+
+    this.router.patch('/', (req, res) => {
+      try {
+        this.databaseService.updatePlanRepas(req.body);
+        res.status(HTTP_CREATED);
+      }
+      catch {
+        res.status(HTTP_ERROR);
+      }
+    });
+
+    this.router.delete('/', (req, res) => {
+      this.databaseService.deletePlanRepas(req.body);
+      res.status(HTTP_OK);
+    });
+
+
+    this.router.get('/debug', (req, res) => {
+      try {
+        this.databaseService.poolDemo();
         res.status(HTTP_OK);
-        });
-        
-        
-       this.router.get('/debug', (req, res) => {
-          try{
-            this.databaseService.poolDemo();
-            res.status(HTTP_OK);
-          }
-          catch{
-            res.status(HTTP_ERROR);
-          }
-          
-        });
+      }
+      catch {
+        res.status(HTTP_ERROR);
+      }
+
+    });
   }
 }
