@@ -1,12 +1,12 @@
 export interface PlanRepas {
-    numeroplan: number;
-    categorie: Categorie; 
-    frequence: Frequence; // TODO make a Type for frequence
-    nbpersonnes: number;
-    nbcalories: number;
+    numeroplan: string;
+    categorie: string; 
+    frequence: string; // TODO make a Type for frequence
+    nbrpersonnes: number;
+    nbrcalories: number;
     prix: number;
     numerofournisseur: string;
 }
 
-type Categorie = "";// TODO Add all categories
-type Frequence = "";// TODO Add all frequence
+// type Categorie = "";// TODO Add all categories
+// type Frequence = "";// TODO Add all frequence

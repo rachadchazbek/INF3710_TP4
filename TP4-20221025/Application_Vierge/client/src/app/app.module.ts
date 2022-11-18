@@ -8,10 +8,20 @@ import { AppComponent } from "./app.component";
 import { CommunicationService } from "./services/communication.service";
 import { AppMaterialModule } from './modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogComponent } from './dialog/dialog.component';
+import { AddPageComponent } from './add-page/add-page.component';
+import { DeletePageComponent } from './delete-page/delete-page.component';
+import { UpdatePageComponent } from './update-page/update-page.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogComponent,
+    AddPageComponent,
+    DeletePageComponent,
+    UpdatePageComponent,
+    WelcomePageComponent
   ],
   imports: [
     CommonModule,

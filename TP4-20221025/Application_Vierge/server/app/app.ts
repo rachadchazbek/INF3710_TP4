@@ -29,7 +29,8 @@ export class Application {
 
   public bindRoutes(): void {
     // Notre application utilise le routeur de notre API
-    this.app.use("/api", this.databaseController.router);
+    this.app.use("/planRepas", this.databaseController.router);
+    console.log('sss');
     this.errorHandeling();
   }
 

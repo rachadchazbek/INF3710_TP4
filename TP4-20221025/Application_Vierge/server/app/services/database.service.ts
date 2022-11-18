@@ -10,7 +10,7 @@ export class DatabaseService {
     database: "TP4_Livraison",
     password: "root",
     port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
-    host: "127.0.0.1",
+    host: "localhost",
     keepAlive: true
   };
 
@@ -53,11 +53,11 @@ export class DatabaseService {
   public async updatePlanRepas(planrepas: PlanRepas): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
 
-    if (!planrepas.numeroplan || !planrepas.categorie || !planrepas.frequence || !planrepas.nbpersonnes || !planrepas.nbcalories || !planrepas.prix || !planrepas.numerofournisseur)
+    if (!planrepas.numeroplan || !planrepas.categorie || !planrepas.frequence || !planrepas.nbrpersonnes || !planrepas.nbrcalories || !planrepas.prix || !planrepas.numerofournisseur)
       throw new Error("Invalid update planrepas values");
 
-    const values: (string | number)[] = [planrepas.numeroplan.toString(), planrepas.categorie, planrepas.frequence, planrepas.nbpersonnes, planrepas.nbcalories, planrepas.prix, planrepas.numerofournisseur];
-    const queryText: string = `UPDATE planrepas SET categorie = $2, frequence = $3, nbpersonnes = $4, nbcalories = $5, prix = $6, numerofournisseur = $7 WHERE numeroplan = $1;`;
+    const values: string[] = [planrepas.numeroplan.toString(), planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes.toString(), planrepas.nbrcalories.toString(), planrepas.prix.toString(), planrepas.numerofournisseur];
+    const queryText: string = `UPDATE planrepas SET categorie = $2, frequence = $3, nbrpersonnes = $4, nbcalories = $5, prix = $6, numerofournisseur = $7 WHERE numeroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();
@@ -84,13 +84,18 @@ export class DatabaseService {
   // === create planrepas ===
   public async createPlanRepas(planrepas: PlanRepas): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
+    console.log("avant le if ");
+    console.log(planrepas);
+    console.log(!planrepas.nbrpersonnes);
+    // if (!planrepas.numeroplan || !planrepas.categorie || !planrepas.frequence || !planrepas.nbrpersonnes.toString() || !planrepas.nbrcalories.toString() || !planrepas.prix.toString() || !planrepas.numerofournisseur){
+    //   console.log("rentre dans le throw");
+    //   throw new Error("Invalid create planrepas values");
+    // }
 
-    if (!planrepas.numeroplan || !planrepas.categorie || !planrepas.frequence || !planrepas.nbpersonnes || !planrepas.nbcalories || !planrepas.prix || !planrepas.numerofournisseur)
-      throw new Error("Invalid create planrepas values");
-
-    const values: (string | number)[] = [planrepas.numeroplan.toString(), planrepas.categorie, planrepas.frequence, planrepas.nbpersonnes, planrepas.nbcalories, planrepas.prix, planrepas.numerofournisseur];
-    const queryText: string = `INSERT INTO planrepas VALUES($1, $2, $3, $4, $5, $6, $7);`;
-
+    const values = [planrepas.numeroplan.toString(), planrepas.categorie.toString(), planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
+    const queryText: string = `INSERT INTO TP4.Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
+    console.log("Values", values);
+    console.log(queryText)
     const res = await client.query(queryText, values);
     client.release();
 
