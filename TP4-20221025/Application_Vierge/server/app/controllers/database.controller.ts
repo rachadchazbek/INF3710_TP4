@@ -35,8 +35,7 @@ export class DatabaseController {
 
         this.router.post('/', async (req, res) => {
           try{
-            await this.databaseService.createPlanRepas(req.body);
-            res.status(HTTP_CREATED);
+            this.databaseService.createPlanRepas(req.body).then(()=>{res.status(HTTP_CREATED)});
           }
           catch {
             res.status(HTTP_ERROR);
@@ -46,7 +45,7 @@ export class DatabaseController {
 
         this.router.patch('/', (req, res) => {
           try{
-            this.databaseService.updatePlanRepas(req.body);
+            this.databaseService.updatePlanRepas(req.body).then(()=>{res.status(HTTP_CREATED)});
             res.status(HTTP_CREATED);
           }
           catch{
