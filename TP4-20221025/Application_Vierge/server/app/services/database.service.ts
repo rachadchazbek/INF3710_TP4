@@ -82,7 +82,7 @@ export class DatabaseService {
     const values = [planrepas.numeroplan, planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
     const queryText: string = `INSERT INTO TP4.Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
 
-    const res = await client.query(queryText, values); ß
+    const res = await client.query(queryText, values);
     client.release();
 
     return res;
