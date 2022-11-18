@@ -8,7 +8,7 @@ export class DatabaseService {
   public connectionConfig: pg.ConnectionConfig = {
     user: "postgres",
     database: "TP4_Livraison",
-    password: "root",
+    password: "",
     port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
     host: "localhost",
     keepAlive: true
@@ -33,7 +33,7 @@ export class DatabaseService {
       throw new Error("Invalid get planrepas values");
     
     const values: string[] = [numeroplan.toString()];
-    const queryText: string = `SELECT * FROM planrepas WHERE numeroplan = $1;`;
+    const queryText: string = `SELECT * FROM planrepas WHERE numéroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();
@@ -57,7 +57,7 @@ export class DatabaseService {
       throw new Error("Invalid update planrepas values");
 
     const values: string[] = [planrepas.numeroplan.toString(), planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes.toString(), planrepas.nbrcalories.toString(), planrepas.prix.toString(), planrepas.numerofournisseur];
-    const queryText: string = `UPDATE planrepas SET categorie = $2, frequence = $3, nbrpersonnes = $4, nbcalories = $5, prix = $6, numerofournisseur = $7 WHERE numeroplan = $1;`;
+    const queryText: string = `UPDATE planrepas SET catégorie = $2, fréquence = $3, nbrpersonnes = $4, nbrcalories = $5, prix = $6, numérofournisseur = $7 WHERE numéroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();
@@ -73,7 +73,7 @@ export class DatabaseService {
       throw new Error("Invalid delete planrepas values");
 
     const values: string[] = [planrepas.numeroplan.toString()];
-    const queryText: string = `DELETE FROM planrepas WHERE numeroplan = $1;`;
+    const queryText: string = `DELETE FROM planrepas WHERE numéroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();
@@ -92,7 +92,7 @@ export class DatabaseService {
     //   throw new Error("Invalid create planrepas values");
     // }
 
-    const values = [planrepas.numeroplan.toString(), planrepas.categorie.toString(), planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
+    const values = [planrepas.numeroplan.toString(), planrepas.categorie.toString(), planrepas.frequence.toString(), planrepas.nbrpersonnes.toString(), planrepas.nbrcalories.toString(), planrepas.prix.toString(), planrepas.numerofournisseur];
     const queryText: string = `INSERT INTO TP4.Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
     console.log("Values", values);
     console.log(queryText)

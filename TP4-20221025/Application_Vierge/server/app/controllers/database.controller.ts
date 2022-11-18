@@ -54,7 +54,7 @@ export class DatabaseController {
           }
        });
 
-       this.router.delete('/:id', (req, res) => {
+       this.router.delete('/', (req, res) => {
         this.databaseService.deletePlanRepas(req.body);
         res.status(HTTP_OK);
         });
