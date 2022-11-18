@@ -1,3 +1,4 @@
+import { CONNEXTION_CONFIG } from "connectionConfig";
 import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
@@ -5,21 +6,14 @@ import { PlanRepas } from "../interfaces/planrepas";
 
 @injectable()
 export class DatabaseService {
-  public connectionConfig: pg.ConnectionConfig = {
-    user: "postgres",
-    database: "TP4_Livraison",
-    password: "",
-    port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
-    host: "localhost",
-    keepAlive: true
-  };
+  public connectionConfig: pg.ConnectionConfig = CONNEXTION_CONFIG
 
   public pool: pg.Pool = new pg.Pool(this.connectionConfig);
-  
+
   // === Debug ===
-  public async poolDemo(): Promise<pg.QueryResult> { 
+  public async poolDemo(): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
-    const res = await client.query(`SELECT NOW();`); 
+    const res = await client.query(`SELECT NOW();`);
     console.log(res);
     client.release();
     return res;
@@ -31,7 +25,7 @@ export class DatabaseService {
 
     if (!numeroplan)
       throw new Error("Invalid get planrepas values");
-    
+
     const values: string[] = [numeroplan.toString()];
     const queryText: string = `SELECT * FROM planrepas WHERE numéroplan = $1;`;
 
@@ -63,7 +57,7 @@ export class DatabaseService {
     client.release();
 
     return res;
-  }   
+  }
 
   // === delete planrepas ===
   public async deletePlanRepas(planrepas: PlanRepas): Promise<pg.QueryResult> {
