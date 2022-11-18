@@ -27,25 +27,34 @@ export class DatabaseController {
         console.log(allPlanRepas.rows);
         res.status(HTTP_OK).json(allPlanRepas.rows);
       }
-      catch {
-        console.log("Catch")
+      catch (error) {
+        res.status(HTTP_ERROR).json(error);
+      }
+    });
+
+    this.router.get('/:numeroplan', async (req, res) => {
+      try {
+        const planRepas = await this.databaseService.getPlanRepas(req.params.numeroplan);
+        res.status(HTTP_OK).json(planRepas.rows);
+      }
+      catch (error) {
         res.status(HTTP_ERROR);
       }
     });
 
-        this.router.post('/', async (req, res) => {
-          try{
-            this.databaseService.createPlanRepas(req.body).then(()=>{res.status(HTTP_CREATED).json()});
-          }
-          catch {
-            res.status(HTTP_ERROR);
-          }
-           
-        });
+    this.router.post('/', async (req, res) => {
+      try {
+        this.databaseService.createPlanRepas(req.body).then(() => { res.status(HTTP_CREATED).json() });
+      }
+      catch {
+        res.status(HTTP_ERROR);
+      }
+
+    });
 
     this.router.patch('/', (req, res) => {
       try {
-        this.databaseService.updatePlanRepas(req.body).then(()=>{res.status(HTTP_CREATED).json()});
+        this.databaseService.updatePlanRepas(req.body).then(() => { res.status(HTTP_CREATED).json() });
         res.status(HTTP_CREATED);
       }
       catch {
@@ -54,7 +63,7 @@ export class DatabaseController {
     });
 
     this.router.delete('/', (req, res) => {
-      this.databaseService.deletePlanRepas(req.body).then(()=>{res.status(HTTP_OK).json()}).catch((error)=>{res.status(HTTP_ERROR).json(error)});
+      this.databaseService.deletePlanRepas(req.body).then(() => { res.status(HTTP_OK).json() }).catch((error) => { res.status(HTTP_ERROR).json(error) });
     });
 
 
