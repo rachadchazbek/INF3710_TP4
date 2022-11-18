@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
-import { PlanRepas } from "../interfaces/planrepas";
+import { PlanRepas, values } from "../interfaces/planrepas";
 
 @injectable()
 export class DatabaseService {
@@ -57,7 +57,7 @@ export class DatabaseService {
     if (!planrepas.numeroplan || !planrepas.categorie || !planrepas.frequence || !planrepas.nbrpersonnes || !planrepas.nbrcalories || !planrepas.prix || !planrepas.numerofournisseur)
       throw new Error("Invalid update planrepas values");
 
-    const values: string[] = [planrepas.numeroplan.toString(), planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes.toString(), planrepas.nbrcalories.toString(), planrepas.prix.toString(), planrepas.numerofournisseur];
+    const values: values = [planrepas.numeroplan, planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
     const queryText: string = `UPDATE planrepas SET catégorie = $2, fréquence = $3, nbrpersonnes = $4, nbrcalories = $5, prix = $6, numérofournisseur = $7 WHERE numéroplan = $1;`;
 
     const res = await client.query(queryText, values);
@@ -93,7 +93,7 @@ export class DatabaseService {
     //   throw new Error("Invalid create planrepas values");
     // }
 
-    const values = [planrepas.numeroplan.toString(), planrepas.categorie.toString(), planrepas.frequence.toString(), planrepas.nbrpersonnes.toString(), planrepas.nbrcalories.toString(), planrepas.prix.toString(), planrepas.numerofournisseur];
+    const values = [planrepas.numeroplan, planrepas.categorie.toString(), planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
     const queryText: string = `INSERT INTO TP4.Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
     console.log("Values", values);
     console.log(queryText)
