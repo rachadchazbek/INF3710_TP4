@@ -1,11 +1,9 @@
-// À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
 // import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
 @Injectable()
 export class CommunicationService {
-  // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private readonly BASE_URL: string = "http://localhost:3000/database";
   // public constructor(private readonly http: HttpClient) {}
 
@@ -19,7 +17,6 @@ export class CommunicationService {
     this._listeners.next(filterBy);
   }
 
-  // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private handleError<T>(
   //   request: string,
   //   result?: T
