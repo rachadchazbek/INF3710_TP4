@@ -4,11 +4,12 @@ import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PlanRepas } from 'src/interfaces/planrepas';
 
-@Injectable({
-    providedIn: 'root',
-})
 const END_POINT = environment.serverUrl + 'planPepas';
+@Injectable({
+  providedIn: 'root'
+})
 export class ClientControllerService {
+
     constructor(private readonly http: HttpClient) {}
 
     getPlanRepas(numeroPlan: number): Observable<PlanRepas> {
@@ -20,8 +21,8 @@ export class ClientControllerService {
         return this.http.get<PlanRepas[]>(environment.serverUrl + 'planPepas').pipe(catchError(this.handleError<PlanRepas[]>('basicGet')));
     }
 
-    insertPlanRepas(planRepas: PlanRepas): Observable<void> {
-        return this.http.post<void>(END_POINT, planRepas).pipe(catchError(this.handleError<void>('planRepas')));
+    updatePlanRepas(planRepas: PlanRepas): Observable<void> {
+        return this.http.patch<void>(END_POINT, planRepas).pipe(catchError(this.handleError<void>('planRepas')));
     }
 
     addPlanrepas(planRepas: PlanRepas): Observable<void> {
@@ -33,3 +34,4 @@ export class ClientControllerService {
     private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
         return () => of(result as T);
     }
+  }
