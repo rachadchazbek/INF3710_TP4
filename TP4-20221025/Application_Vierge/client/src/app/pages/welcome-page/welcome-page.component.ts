@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientControllerService } from 'src/app/services/client-controller.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly controller: ClientControllerService) { }
 
   ngOnInit(): void {
   }
-
+  getAllPlanRepas(){
+    try{
+    this.controller.getAllPlanRepas();
+    }
+    catch{};
+  }
 }
