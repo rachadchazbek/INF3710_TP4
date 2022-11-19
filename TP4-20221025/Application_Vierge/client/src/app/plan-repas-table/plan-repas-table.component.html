@@ -1,5 +1,45 @@
-<p>plan-repas-table works!  </p>
-<p>plan-repas-table works! </p>
-<button mat-raised-button color="primary" class="button" routerLink="add" (click)="add({})"> Ajouter un plan repas</button>
-<button mat-raised-button color="primary" class="button" routerLink="update" (click)="update()">supprimer un plan repas</button>
-<button mat-raised-button color="primary" class="button" routerLink="delete" (click)="delete()">supprimer un plan repas</button>
+<p>Liste des Plan repas {{allPlanRepas.length}}</p>
+<div *ngIf="allPlanRepas?.length ?? 0 > 0">
+    <table mat-table [dataSource]="allPlanRepas" class="mat-elevation-z8">
+        <ng-container matColumnDef="numéroplan">
+            <th mat-header-cell *matHeaderCellDef>NumeroPlan</th>
+            <td mat-cell *matCellDef="let planrepas">{{ Object.values(planrepas)[1]}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="catégorie">
+            <th mat-header-cell *matHeaderCellDef>Catégorie</th>
+            <td mat-cell *matCellDef="let planrepas">{{planrepas.categorie}}</td>
+        </ng-container>
+        <ng-container matColumnDef="fréquence">
+            <th mat-header-cell *matHeaderCellDef>Fréquence</th>
+            <td mat-cell *matCellDef="let planrepas">{{ Object.values(planrepas)[1]}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nbrcalories">
+            <th mat-header-cell *matHeaderCellDef>NbrCalories</th>
+            <td mat-cell *matCellDef="let planrepas">{{ Object.values(planrepas)[1] }}</td>
+        </ng-container>
+        <ng-container matColumnDef="nbrpersonnes">
+            <th mat-header-cell *matHeaderCellDef>NbrPersonnes</th>
+            <td mat-cell *matCellDef="let planrepas">{{ Object.values(planrepas)[1]}}</td>
+        </ng-container>
+        <ng-container matColumnDef="numérofournisseur">
+            <th mat-header-cell *matHeaderCellDef>NbrPersonnes</th>
+            <td mat-cell *matCellDef="let planrepas">{{ Object.values(planrepas)[1]}}</td>
+        </ng-container>
+        <ng-container matColumnDef="prix">
+            <th mat-header-cell *matHeaderCellDef>NumeroPlan</th>
+            <td mat-cell *matCellDef="let planrepas">{{ Object.values(planrepas)[1]}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let planrepas">
+                <button mat-raised-button color="primary" class="button" routerLink="update" (click)="update()"> Update</button>
+                <button mat-raised-button color="primary" class="button" routerLink="delete" (click)="delete()">supprimer un plan repas</button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>
+<button mat-raised-button color="primary" class="button" routerLink="add" (click)="add({})"> Update</button>

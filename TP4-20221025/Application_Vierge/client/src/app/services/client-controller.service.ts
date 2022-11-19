@@ -4,7 +4,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PlanRepas } from 'src/interfaces/planrepas';
 
-const END_POINT = environment.serverUrl + '/planPepas';
+const END_POINT = environment.serverUrl + 'planRepas';
 @Injectable({
   providedIn: 'root'
 })

@@ -10,10 +10,10 @@ import { ClientControllerService } from '../services/client-controller.service';
 export class PlanRepasTableComponent implements OnInit {
   
   constructor(private readonly controller: ClientControllerService) { }
+  displayedColumns: string[] = ['numéroplan','catégorie','fréquence','nbrcalories','nbrpersonnes','numérofournisseur','prix','action'];
   allPlanRepas: PlanRepas[] = [];
   ngOnInit(): void {
     try{
-    console.log("jj");
     this.controller.getAllPlanRepas().subscribe((allPlanRepas)=>{
       this.allPlanRepas = allPlanRepas;
       console.log(this.allPlanRepas);
@@ -42,5 +42,4 @@ export class PlanRepasTableComponent implements OnInit {
     }
     catch{}
   }
-
 }

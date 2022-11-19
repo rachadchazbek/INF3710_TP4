@@ -13,7 +13,7 @@ import { AddPageComponent } from './pages/add-page/add-page.component';
 import { DeletePageComponent } from './pages/delete-page/delete-page.component';
 import { UpdatePageComponent } from './pages/update-page/update-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
-import { PlanRepasTableComponent } from './pages/plan-repas-table/plan-repas-table.component';
+import { PlanRepasTableComponent } from "./plan-repas-table/plan-repas-table.component";
 
 @NgModule({
   declarations: [

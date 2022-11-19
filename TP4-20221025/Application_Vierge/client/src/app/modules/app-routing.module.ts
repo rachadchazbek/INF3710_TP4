@@ -4,7 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "../app.component";
 import { AddPageComponent } from "../pages/add-page/add-page.component";
 import { DeletePageComponent } from "../pages/delete-page/delete-page.component";
-import { PlanRepasTableComponent } from "../pages/plan-repas-table/plan-repas-table.component";
+import { PlanRepasTableComponent } from "../plan-repas-table/plan-repas-table.component";
 
 const routes: Routes = [
   {
