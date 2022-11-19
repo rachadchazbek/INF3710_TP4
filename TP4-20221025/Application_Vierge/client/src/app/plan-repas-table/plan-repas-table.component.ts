@@ -8,10 +8,18 @@ import { ClientControllerService } from '../services/client-controller.service';
   styleUrls: ['./plan-repas-table.component.css']
 })
 export class PlanRepasTableComponent implements OnInit {
-
-  constructor(privatye readonly controller: ClientControllerService) { }
-
+  
+  constructor(private readonly controller: ClientControllerService) { }
+  allPlanRepas: PlanRepas[] = [];
   ngOnInit(): void {
+    try{
+    console.log("jj");
+    this.controller.getAllPlanRepas().subscribe((allPlanRepas)=>{
+      this.allPlanRepas = allPlanRepas;
+      console.log(this.allPlanRepas);
+    })
+    }
+    catch{}
   }
   add(planRepas: PlanRepas)
   {
@@ -20,10 +28,10 @@ export class PlanRepasTableComponent implements OnInit {
     }
     catch{}
   }
-  update(planRepas:PlanRepas)
+  update()
   {
     try{
-      this.controller.updatePlanRepas(planRepas);
+      this.controller.updatePlanRepas({} as PlanRepas);
     }
     catch{}
   }

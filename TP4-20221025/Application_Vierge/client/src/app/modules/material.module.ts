@@ -40,7 +40,8 @@ const modules = [
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
 ];
 
 @NgModule({

@@ -10,15 +10,17 @@ const routes: Routes = [
   {
     path: "app", component: AppComponent,
   },
+ 
+  {
+    path: "planrepas", component: PlanRepasTableComponent
+  },
   {
     path: "add", component: AddPageComponent,
   },
   {
     path: "delete", component: DeletePageComponent,
   },
-  {
-    path: "planrepas", component: PlanRepasTableComponent
-  }
+  { path: '**', redirectTo: 'planrepas' }
 ];
 
 @NgModule({

@@ -6,7 +6,7 @@ import { IEnvironment } from "./IEnvironment";
 
 export const environment: IEnvironment = {
   production: false,
-  serverUrl: 'localhost:3000'
+  serverUrl: 'http://localhost:3000/'
 };
 
 /*
