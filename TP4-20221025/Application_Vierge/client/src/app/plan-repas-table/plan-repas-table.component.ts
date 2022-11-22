@@ -38,9 +38,10 @@ export class PlanRepasTableComponent implements OnInit {
   update()
   {
     try{
-      this.dialog.open(UpdateDialogComponent, {
+      let addDialog = this.dialog.open(UpdateDialogComponent, {
         width: '350px'
       });
+      addDialog.afterClosed().subscribe();
       this.controller.updatePlanRepas({} as PlanRepas);
     }
     catch{}

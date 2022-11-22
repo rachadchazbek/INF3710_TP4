@@ -34,6 +34,6 @@
   
 </form>
 
-<button class="create" mat-raised-button color="primary" type="submit"  (click)="addPlanRepas()">
+<button class="create" mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid" (click)="addPlanRepas()">
     <mat-icon>add</mat-icon> Ajouter Plan Repas
 </button>

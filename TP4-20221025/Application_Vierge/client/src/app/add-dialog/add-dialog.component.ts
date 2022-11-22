@@ -30,8 +30,6 @@ export class AddDialogComponent implements OnInit {
   addPlanRepas(): void {
     this.newPlanRepas = new PlanRepas(this.addForm.value);
     this.controller.addPlanrepas(this.newPlanRepas).subscribe();
-    console.log(this.newPlanRepas);
-    console.log(this.addForm.invalid);
   }
   confirm(): void{
     this.confirmed = true;
