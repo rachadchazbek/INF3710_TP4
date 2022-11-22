@@ -14,6 +14,10 @@ import { DeletePageComponent } from './pages/delete-page/delete-page.component';
 import { UpdatePageComponent } from './pages/update-page/update-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { PlanRepasTableComponent } from "./plan-repas-table/plan-repas-table.component";
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { PlanRepasTableComponent } from "./plan-repas-table/plan-repas-table.com
     DeletePageComponent,
     UpdatePageComponent,
     WelcomePageComponent,
-    PlanRepasTableComponent
+    PlanRepasTableComponent,
+    AddDialogComponent,
+    UpdateDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +42,9 @@ import { PlanRepasTableComponent } from "./plan-repas-table/plan-repas-table.com
     ReactiveFormsModule,
     AppMaterialModule
   ],
-  providers: [CommunicationService],
+  providers: [CommunicationService,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   entryComponents: [],
   bootstrap: [AppComponent],
 })
