@@ -18,12 +18,12 @@ export class AddDialogComponent implements OnInit {
   ngOnInit(): void {
     this.addForm = new FormGroup({
       numeroplan: new FormControl("",[Validators.required, Validators.maxLength(4)]),
-      categorie: new FormControl(),
-      frequence: new FormControl(),
-      nbrpersonnes: new FormControl(),
-      nbrcalories: new FormControl(),
-      prix: new FormControl(),
-      numerofournisseur: new FormControl()
+      categorie: new FormControl([Validators.required, Validators.maxLength(20)]),
+      frequence: new FormControl([Validators.required, Validators.maxLength(20)]),
+      nbrpersonnes: new FormControl([Validators.required]),
+      nbrcalories: new FormControl([Validators.required]),
+      prix: new FormControl([Validators.required]),
+      numerofournisseur: new FormControl("",[Validators.required, Validators.maxLength(4)])
 
   });
   }
