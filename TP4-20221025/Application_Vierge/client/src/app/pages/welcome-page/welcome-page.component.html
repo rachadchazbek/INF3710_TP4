@@ -1,3 +1,18 @@
-<p>Page d'accueil </p>
+<div>
+    <nav class="navbar navbar-dark bg-dark main-nav">
+      <a class="navbar-brand title" href="/" matTooltip="Retournez à l'accueil">INF3710 - TP4</a>
+      <div class="navbar-expand mr-auto">
+        <button mat-raised-button color="primary" class="button" routerLink="planrepas">Voir les plan repas</button>
+      </div>
+    </nav>
+  
+    <div class="home" *ngIf="route == ''">
+      <p>
+        Titre
+      </p>
+      
+    </div>
+  
+  </div>
 
 

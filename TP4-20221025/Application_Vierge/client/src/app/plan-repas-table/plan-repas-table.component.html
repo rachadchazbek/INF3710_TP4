@@ -1,5 +1,5 @@
-<p>Liste des Plan repas {{allPlanRepas.length}}</p>
-<button mat-raised-button color="primary" class="button" routerLink="add" (click)="add({})"> Ajouter un planrepas</button>
+<p>Liste des Plan repas </p>
+<button mat-raised-button color="primary" class="button" (click)="add({})"> Ajouter un planrepas</button>
 <div *ngIf="allPlanRepas?.length ?? 0 > 0">
     <table mat-table [dataSource]="allPlanRepas" class="mat-elevation-z8">
         <ng-container matColumnDef="numéroplan">

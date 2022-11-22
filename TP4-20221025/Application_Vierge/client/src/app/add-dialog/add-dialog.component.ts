@@ -18,8 +18,8 @@ export class AddDialogComponent implements OnInit {
   ngOnInit(): void {
     this.addForm = new FormGroup({
       numeroplan: new FormControl("",[Validators.required, Validators.maxLength(4)]),
-      categorie: new FormControl([Validators.required, Validators.maxLength(20)]),
-      frequence: new FormControl([Validators.required, Validators.maxLength(20)]),
+      categorie: new FormControl("",[Validators.required, Validators.maxLength(20)]),
+      frequence: new FormControl("",[Validators.required, Validators.maxLength(20)]),
       nbrpersonnes: new FormControl([Validators.required]),
       nbrcalories: new FormControl([Validators.required]),
       prix: new FormControl([Validators.required]),
@@ -29,7 +29,13 @@ export class AddDialogComponent implements OnInit {
   }
   addPlanRepas(): void {
     this.newPlanRepas = new PlanRepas(this.addForm.value);
+    try{
     this.controller.addPlanrepas(this.newPlanRepas).subscribe();
+    this.dialogRef.close("Successfully added!")
+    alert("Succesfully Added")
+    }
+    catch { this.dialogRef.close("Error: Retry to add")
+  alert("Error: Veuillez Reessayer d'ajouter ")}
   }
   confirm(): void{
     this.confirmed = true;
