@@ -1,4 +1,4 @@
-export interface PlanRepas {
+export class PlanRepas {
     numéroplan: string;
     catégorie: string;
     fréquence: string; 
@@ -6,4 +6,8 @@ export interface PlanRepas {
     nbrcalories: number;
     prix: number;
     numérofournisseur: string;
-}
+    public constructor(init?: Partial<PlanRepas>) {
+              Object.assign(this, init);
+          }
+      }
+

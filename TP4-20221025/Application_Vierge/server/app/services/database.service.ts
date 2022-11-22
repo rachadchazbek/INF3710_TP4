@@ -80,8 +80,8 @@ export class DatabaseService {
     const client = await this.pool.connect();
 
     const values = [planrepas.numeroplan, planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
-    const queryText: string = `INSERT INTO TP4.Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
-
+    const queryText: string = `INSERT INTO Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
+    console.log("ed")
     const res = await client.query(queryText, values);
     client.release();
 

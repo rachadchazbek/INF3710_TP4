@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PlanRepas } from 'src/interfaces/planrepas';
+import { AddDialogComponent } from '../add-dialog/add-dialog.component';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { ClientControllerService } from '../services/client-controller.service';
+import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 
 @Component({
   selector: 'app-plan-repas-table',
@@ -9,7 +13,7 @@ import { ClientControllerService } from '../services/client-controller.service';
 })
 export class PlanRepasTableComponent implements OnInit {
   
-  constructor(private readonly controller: ClientControllerService) { }
+  constructor(private readonly controller: ClientControllerService, public dialog: MatDialog) { }
   displayedColumns: string[] = ['numéroplan','catégorie','fréquence','nbrcalories','nbrpersonnes','numérofournisseur','prix','action'];
   allPlanRepas: PlanRepas[] = [];
   ngOnInit(): void {
@@ -24,6 +28,9 @@ export class PlanRepasTableComponent implements OnInit {
   add(planRepas: PlanRepas)
   {
     try{
+      this.dialog.open(AddDialogComponent, {
+        width: '350px',
+      });
       this.controller.addPlanrepas(planRepas);
     }
     catch{}
@@ -31,6 +38,9 @@ export class PlanRepasTableComponent implements OnInit {
   update()
   {
     try{
+      this.dialog.open(UpdateDialogComponent, {
+        width: '350px'
+      });
       this.controller.updatePlanRepas({} as PlanRepas);
     }
     catch{}
@@ -38,6 +48,10 @@ export class PlanRepasTableComponent implements OnInit {
   delete()
   {
     try{
+      this.dialog.open(DeleteDialogComponent, {
+        data: { numeroPlan: 1000 },
+        width: '350px'
+      });
       this.controller.deletePlanrepas(1000);
     }
     catch{}

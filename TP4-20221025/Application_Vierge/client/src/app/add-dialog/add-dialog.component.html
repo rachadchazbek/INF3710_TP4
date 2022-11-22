@@ -1,0 +1,39 @@
+<p>Veuillez entrer les information ci-dessous:</p>
+
+<form [formGroup]="addForm">
+    <mat-form-field>
+        <mat-label>NumeroPlan</mat-label>
+        <input matInput type="text" id="numeroplan" formControlName="numeroplan" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Categorie</mat-label>
+        <input matInput type="text" id="categorie" formControlName="categorie" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Frequence</mat-label>
+        <input matInput type="text" id="frequence" formControlName="frequence" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Nbr Personnes</mat-label>
+        <input matInput type="number" id="nbrpersonnes" formControlName="nbrpersonnes" />
+    </mat-form-field>
+     <mat-form-field>
+        <mat-label>Nbr Calories</mat-label>
+        <input matInput type="number" id="nbrcalories" formControlName="nbrcalories" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Prix</mat-label>
+        <input matInput type="number" id="prix" formControlName="prix" />
+    </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Numero Fournisseur</mat-label>
+            <input matInput type="text" id="numerofournisseur" formControlName="numerofournisseur" />
+        </mat-form-field>
+       
+  
+</form>
+
+<button class="create" mat-raised-button color="primary" type="submit"  (click)="addPlanRepas()">
+    <mat-icon>add</mat-icon> Ajouter Plan Repas
+</button>
