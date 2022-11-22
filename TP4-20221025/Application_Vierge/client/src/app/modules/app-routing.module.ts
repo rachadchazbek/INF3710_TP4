@@ -18,9 +18,12 @@ const routes: Routes = [
     path: "add", component: AddPageComponent,
   },
   {
+    path: "update", component: AddPageComponent,
+  },
+  {
     path: "delete", component: DeletePageComponent,
   },
-  { path: '**', redirectTo: 'planrepas' }
+  { path: '**', redirectTo: 'app' }
 ];
 
 @NgModule({
