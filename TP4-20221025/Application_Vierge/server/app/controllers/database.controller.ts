@@ -24,7 +24,6 @@ export class DatabaseController {
     this.router.get('/', async (req, res) => {
       try {
         const allPlanRepas = await this.databaseService.getAllPlanRepas();
-        console.log(allPlanRepas.rows);
         res.status(HTTP_OK).json(allPlanRepas.rows);
       }
       catch (error) {
