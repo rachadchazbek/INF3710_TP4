@@ -41,12 +41,11 @@ export class PlanRepasTableComponent implements OnInit {
   update(numeroplan: string)
   {
     try{
-      let addDialog = this.dialog.open(UpdateDialogComponent, {
+      let updateDialog = this.dialog.open(UpdateDialogComponent, {
         width: '350px',
         data: {numeroplan: numeroplan}
       });
-      addDialog.afterClosed().subscribe((result)=>{alert(result)});
-      this.controller.updatePlanRepas({} as PlanRepas);
+      updateDialog.afterClosed().subscribe((result)=>{alert(result)});
     }
     catch{}
   }
@@ -55,6 +54,7 @@ export class PlanRepasTableComponent implements OnInit {
     try{
       const deleteDialog = this.dialog.open(DialogComponent, {
         data:{
+          numeroplan: numeroplan,
           message: DELETE_CONFIRMATION_MESSAGE ,
           buttonText: {
             ok: ' Oui',

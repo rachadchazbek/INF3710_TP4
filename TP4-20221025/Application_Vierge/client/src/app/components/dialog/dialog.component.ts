@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ClientControllerService } from 'src/app/services/client-controller.service';
 
 @Component({
   selector: 'app-dialog',
@@ -12,7 +13,7 @@ export class DialogComponent {
   cancelButtonText = "Cancel"
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<DialogComponent>) {
+    private dialogRef: MatDialogRef<DialogComponent>, private controller: ClientControllerService) {
       if(this.data){
     this.message = this.data.message || this.message;
     if (data.buttonText) {
@@ -24,5 +25,12 @@ export class DialogComponent {
 
   onConfirmClick(): void {
     this.dialogRef.close(true);
+    try{
+      this.controller.deletePlanrepas(this.data.numeroplan);
+      //TO DO : Open snackbar WORKED:
+    }
+    catch{
+      // Open snackbar error
+    }
   }
 }
