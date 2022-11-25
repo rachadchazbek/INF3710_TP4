@@ -9,7 +9,7 @@ export class DatabaseService {
 
     user: "postgres",
     database: "TP4_Livraison",
-    password: "Ahmeds0a",
+    password: "root",
     port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
     host: "localhost",
     keepAlive: true
@@ -63,10 +63,10 @@ export class DatabaseService {
   }
 
   // === delete planrepas ===
-  public async deletePlanRepas(planrepas: PlanRepas): Promise<pg.QueryResult> {
+  public async deletePlanRepas(numeroplan: string): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
 
-    const values: string[] = [planrepas.numeroplan];
+    const values: string[] = [numeroplan];
     const queryText: string = `DELETE FROM planrepas WHERE numeroplan = $1;`;
 
     const res = await client.query(queryText, values);
