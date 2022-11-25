@@ -35,11 +35,12 @@ export class PlanRepasTableComponent implements OnInit {
     }
     catch{}
   }
-  update()
+  update(numeroplan: string)
   {
     try{
       let addDialog = this.dialog.open(UpdateDialogComponent, {
-        width: '350px'
+        width: '350px',
+        data: {numeroplan: 'P001'}
       });
       addDialog.afterClosed().subscribe((result)=>{alert(result)});
       this.controller.updatePlanRepas({} as PlanRepas);

@@ -12,8 +12,8 @@ export class ClientControllerService {
 
     constructor(private readonly http: HttpClient) {}
 
-    getPlanRepas(numeroPlan: number): Observable<PlanRepas> {
-        return this.http.get<PlanRepas>(environment.serverUrl + '/${numeroPlan}' ).pipe(catchError(this.handleError<PlanRepas>('basicGet')));;
+    getPlanRepas(numeroPlan: PlanRepas): Observable<PlanRepas[]> {
+        return this.http.get<PlanRepas[]>(END_POINT+ `/${numeroPlan}` ).pipe(catchError(this.handleError<PlanRepas[]>('basicGet')));;
     }
 
 
