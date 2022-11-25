@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: "delete", component: DeletePageComponent,
   },
-  { path: '**', redirectTo: 'welcome' }
+  { path: '**', redirectTo: 'app' }
 ];
 
 @NgModule({
