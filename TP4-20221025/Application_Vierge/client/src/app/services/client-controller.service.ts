@@ -13,7 +13,7 @@ export class ClientControllerService {
     constructor(private readonly http: HttpClient) {}
 
     getPlanRepas(numeroPlan: number): Observable<PlanRepas> {
-        return this.http.get<PlanRepas>(environment.serverUrl + '/${numeroPlan}' ).pipe(catchError(this.handleError<PlanRepas>('basicGet')));;
+        return this.http.get<PlanRepas>(environment.serverUrl + `/${numeroPlan}`).pipe(catchError(this.handleError<PlanRepas>('basicGet')));;
     }
 
 
