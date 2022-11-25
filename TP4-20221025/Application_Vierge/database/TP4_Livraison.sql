@@ -17,7 +17,7 @@ CREATE DATABASE "TP4_Livraison"
     IS_TEMPLATE = False;
 
 CREATE TABLE IF NOT EXISTS Fournisseur(
-	numérofournisseur CHAR(4) PRIMARY KEY,
+	numerofournisseur CHAR(4) PRIMARY KEY,
 	nomfournisseur VARCHAR(20),
 	adressefournisseur VARCHAR(200)
 );
@@ -40,58 +40,58 @@ CREATE TABLE IF NOT EXISTS Téléphone(
 );
 
 CREATE TABLE IF NOT EXISTS Planrepas(
-	numéroplan CHAR(4) PRIMARY KEY,
-	catégorie VARCHAR(20),
-	fréquence VARCHAR(20),
+	numeroplan CHAR(4) PRIMARY KEY,
+	categorie VARCHAR(20),
+	frequence VARCHAR(20),
 	nbrpersonnes INT,
 	nbrcalories INT,
 	prix INT NOT NULL,
-	numérofournisseur CHAR(4) NOT NULL, 
-	CONSTRAINT FK_Planrepas_Fournisseur FOREIGN KEY (numérofournisseur) REFERENCES Fournisseur
+	numerofournisseur CHAR(4) NOT NULL, 
+	CONSTRAINT FK_Planrepas_Fournisseur FOREIGN KEY (numerofournisseur) REFERENCES Fournisseur
 );
 
 CREATE TABLE IF NOT EXISTS Abonner(
 	numéroclient CHAR(4),
-	numéroplan CHAR(4),
+	numeroplan CHAR(4),
 	durée VARCHAR(20) NOT NULL,
-	PRIMARY KEY (numéroclient, numéroplan),
+	PRIMARY KEY (numéroclient, numeroplan),
 	CONSTRAINT FK_Abonner_Client FOREIGN KEY (numéroclient) REFERENCES Client,
-	CONSTRAINT FK_Abonner_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Abonner_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
 );
 
 CREATE TABLE IF NOT EXISTS Pescétarien(
-	numéroplan CHAR(4) PRIMARY KEY,
+	numeroplan CHAR(4) PRIMARY KEY,
 	typepoisson VARCHAR(20),
-	CONSTRAINT FK_Pescétarien_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Pescétarien_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
 );
 
 CREATE TABLE IF NOT EXISTS Végétarien(
-	numéroplan CHAR(4) PRIMARY KEY,
+	numeroplan CHAR(4) PRIMARY KEY,
 	typederepas VARCHAR(20),
-	CONSTRAINT FK_Végétarien_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Végétarien_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
 );
 
 CREATE TABLE IF NOT EXISTS Famille(
-	numéroplan CHAR(4) PRIMARY KEY,
-	CONSTRAINT FK_Famille_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
+	numeroplan CHAR(4) PRIMARY KEY,
+	CONSTRAINT FK_Famille_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
 );
 
 CREATE TABLE IF NOT EXISTS Facile(
-	numéroplan CHAR(4) PRIMARY KEY,
-	CONSTRAINT FK_Facile_Famille FOREIGN KEY (numéroplan) REFERENCES Famille
+	numeroplan CHAR(4) PRIMARY KEY,
+	CONSTRAINT FK_Facile_Famille FOREIGN KEY (numeroplan) REFERENCES Famille
 
 );
 
 CREATE TABLE IF NOT EXISTS Rapide(
-	numéroplan CHAR(4) PRIMARY KEY,
-	CONSTRAINT FK_Rapide_Famille FOREIGN KEY (numéroplan) REFERENCES Famille
+	numeroplan CHAR(4) PRIMARY KEY,
+	CONSTRAINT FK_Rapide_Famille FOREIGN KEY (numeroplan) REFERENCES Famille
 );
 
 CREATE TABLE IF NOT EXISTS Kitrepas(
 	numérokitrepas CHAR(4) PRIMARY KEY,
 	description VARCHAR(300) NOT NULL,
-	numéroplan CHAR(4) NOT NULL,
-	CONSTRAINT FK_Kitrepas_Planrepas FOREIGN KEY (numéroplan) REFERENCES Planrepas
+	numeroplan CHAR(4) NOT NULL,
+	CONSTRAINT FK_Kitrepas_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
 );
 
 CREATE TABLE IF NOT EXISTS Ingrédient(

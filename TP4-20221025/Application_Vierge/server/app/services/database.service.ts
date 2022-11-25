@@ -8,9 +8,9 @@ export class DatabaseService {
   public connectionConfig: pg.ConnectionConfig = {
 
     user: "postgres",
-    database: "TP4",
-    password: "Ahmeds0a",
-    port: 5433,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
+    database: "TP4_Livraison",
+    password: "",
+    port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
     host: "localhost",
     keepAlive: true
   };
@@ -31,7 +31,7 @@ export class DatabaseService {
     const client = await this.pool.connect();
 
     const values: string[] = [numeroplan.toString()];
-    const queryText: string = `SELECT * FROM planrepas WHERE numéroplan = $1;`;
+    const queryText: string = `SELECT * FROM planrepas WHERE numeroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();
@@ -54,7 +54,7 @@ export class DatabaseService {
     const client = await this.pool.connect();
 
     const values: values = [planrepas.numeroplan, planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
-    const queryText: string = `UPDATE planrepas SET catégorie = $2, fréquence = $3, nbrpersonnes = $4, nbrcalories = $5, prix = $6, numérofournisseur = $7 WHERE numéroplan = $1;`;
+    const queryText: string = `UPDATE planrepas SET categorie = $2, frequence = $3, nbrpersonnes = $4, nbrcalories = $5, prix = $6, numerofournisseur = $7 WHERE numeroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();
@@ -67,7 +67,7 @@ export class DatabaseService {
     const client = await this.pool.connect();
 
     const values: string[] = [planrepas.numeroplan];
-    const queryText: string = `DELETE FROM planrepas WHERE numéroplan = $1;`;
+    const queryText: string = `DELETE FROM planrepas WHERE numeroplan = $1;`;
 
     const res = await client.query(queryText, values);
     client.release();

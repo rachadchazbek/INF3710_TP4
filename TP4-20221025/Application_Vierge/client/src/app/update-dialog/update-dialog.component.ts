@@ -23,16 +23,16 @@ export class UpdateDialogComponent implements OnInit {
       console.log(result); 
       this.initialForm = new PlanRepas(result[0]);
       this.updatedForm = new FormGroup({
-        numeroplan: new FormControl(this.initialForm.numéroplan,[Validators.required, Validators.maxLength(4)]),
-        categorie: new FormControl(this.initialForm.catégorie,[Validators.required, Validators.maxLength(20)]),
-        frequence: new FormControl(this.initialForm.fréquence,[Validators.required, Validators.maxLength(20)]),
+        numeroplan: new FormControl(this.initialForm.numeroplan,[Validators.required, Validators.maxLength(4)]),
+        categorie: new FormControl(this.initialForm.categorie,[Validators.required, Validators.maxLength(20)]),
+        frequence: new FormControl(this.initialForm.frequence,[Validators.required, Validators.maxLength(20)]),
         nbrpersonnes: new FormControl(this.initialForm.nbrpersonnes, [Validators.required]),
         nbrcalories: new FormControl(this.initialForm.nbrcalories,[Validators.required]),
         prix: new FormControl(this.initialForm.prix,[Validators.required]),
-        numerofournisseur: new FormControl(this.initialForm.numérofournisseur,[Validators.required, Validators.maxLength(4)])
+        numerofournisseur: new FormControl(this.initialForm.numerofournisseur,[Validators.required, Validators.maxLength(4)])
   
     });
-    console.log(this.initialForm.numéroplan);
+    console.log(this.initialForm.numeroplan);
     });
     
     
@@ -41,11 +41,11 @@ export class UpdateDialogComponent implements OnInit {
     this.updatedPlanRepas = new PlanRepas(this.updatedForm.value);
     try{
     this.controller.updatePlanRepas(this.updatedPlanRepas).subscribe();
-    this.dialogRef.close("Successfully added!")
-    alert("Succesfully Added")
+    this.dialogRef.close("Successfully updated!")
+    alert("Succesfully updated")
     }
-    catch { this.dialogRef.close("Error: Retry to add")
-  alert("Error: Veuillez Reessayer d'ajouter ")}
+    catch { this.dialogRef.close("Error: Retry to update")
+  alert("Error: Veuillez Reessayer de modifier ")}
   }
   confirm(): void{
     this.confirmed = true;
