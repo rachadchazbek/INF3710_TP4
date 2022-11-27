@@ -2,18 +2,11 @@ import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
 import { PlanRepas, values } from "../interfaces/planrepas";
+import { DATABASE_CONFIG } from "./database.config";
 
 @injectable()
 export class DatabaseService {
-  public connectionConfig: pg.ConnectionConfig = {
-
-    user: "postgres",
-    database: "TP4_Livraison",
-    password: "root",
-    port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
-    host: "localhost",
-    keepAlive: true
-  };
+  public connectionConfig: pg.ConnectionConfig = DATABASE_CONFIG;
 
   public pool: pg.Pool = new pg.Pool(this.connectionConfig);
 
