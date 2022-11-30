@@ -72,7 +72,7 @@ CREATE VIEW V_fournisseur
 AS
 SELECT P.catégorie AS 'V_catégorie', F.adressefournisseur AS 'V_adresse', SUM(P.prix) AS 'V_tot' 
 FROM Fournisseur F, Planrepas P
-WHERE F.numérofournisseur = P.numérofournisseur AND P.catégorie LIKE '%e__o%' --Check if the category contains the letters 'e' and 'o' at the third position of the end
+WHERE F.numérofournisseur = P.numérofournisseur AND P.catégorie LIKE '%eo__' --Check if the category contains the letters 'e' and 'o' at the third position of the end
 GROUP BY P.catégorie, F.adressefournisseur --Group by the category and the address
 HAVING SUM(P.prix) > 12500 --Having the sum of the prices greater than 12500$
 ORDER BY P.catégorie ASC, V_tot DESC; --Order by the category and the sum of the prices
