@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PlanRepas } from 'src/interfaces/planrepas';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { DialogComponent } from '../components/dialog/dialog.component';
+
 import { ClientControllerService } from '../services/client-controller.service';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 
+
+const DELETE_CONFIRMATION_MESSAGE = 'Est ce que vous êtes sure de modifier?';
 @Component({
   selector: 'app-plan-repas-table',
   templateUrl: './plan-repas-table.component.html',
@@ -14,7 +17,7 @@ import { UpdateDialogComponent } from '../update-dialog/update-dialog.component'
 export class PlanRepasTableComponent implements OnInit {
   
   constructor(private readonly controller: ClientControllerService, public dialog: MatDialog) { }
-  displayedColumns: string[] = ['numéroplan','catégorie','fréquence','nbrcalories','nbrpersonnes','numérofournisseur','prix','action'];
+  displayedColumns: string[] = ['numeroplan','categorie','frequence','nbrcalories','nbrpersonnes','numerofournisseur','prix','action'];
   allPlanRepas: PlanRepas[] = [];
   ngOnInit(): void {
     try{
@@ -35,25 +38,34 @@ export class PlanRepasTableComponent implements OnInit {
     }
     catch{}
   }
-  update()
+  update(numeroplan: string)
   {
     try{
-      let addDialog = this.dialog.open(UpdateDialogComponent, {
-        width: '350px'
+      let updateDialog = this.dialog.open(UpdateDialogComponent, {
+        width: '350px',
+        data: {numeroplan: numeroplan}
       });
-      addDialog.afterClosed().subscribe((result)=>{alert(result)});
-      this.controller.updatePlanRepas({} as PlanRepas);
+      updateDialog.afterClosed().subscribe((result)=>{alert(result)});
     }
     catch{}
   }
-  delete()
+  delete(numeroplan: string)
   {
     try{
-      this.dialog.open(DeleteDialogComponent, {
-        data: { numeroPlan: 1000 },
+      const deleteDialog = this.dialog.open(DialogComponent, {
+        data:{
+          numeroplan: numeroplan,
+          message: DELETE_CONFIRMATION_MESSAGE ,
+          buttonText: {
+            ok: ' Oui',
+            cancel: 'Non'
+          }
+        },
         width: '350px'
       });
-      this.controller.deletePlanrepas(1000);
+      deleteDialog.afterClosed().subscribe((confirmed: boolean) => {
+      });
+      this.controller.deletePlanrepas(numeroplan);
     }
     catch{}
   }

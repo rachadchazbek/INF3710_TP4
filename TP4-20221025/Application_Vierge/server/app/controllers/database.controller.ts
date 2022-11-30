@@ -24,7 +24,6 @@ export class DatabaseController {
     this.router.get('/', async (req, res) => {
       try {
         const allPlanRepas = await this.databaseService.getAllPlanRepas();
-        console.log(allPlanRepas.rows);
         res.status(HTTP_OK).json(allPlanRepas.rows);
       }
       catch (error) {
@@ -62,7 +61,7 @@ export class DatabaseController {
       }
     });
 
-    this.router.delete('/', (req, res) => {
+    this.router.delete('/:numeroplan', (req, res) => {
       this.databaseService.deletePlanRepas(req.body).then(() => { res.status(HTTP_OK).json() }).catch((error) => { res.status(HTTP_ERROR).json(error) });
     });
 

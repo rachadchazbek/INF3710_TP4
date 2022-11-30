@@ -142,3 +142,7 @@ API
 Training
 Blog
 About
+
+
+#database config
+./services/database.config.ts

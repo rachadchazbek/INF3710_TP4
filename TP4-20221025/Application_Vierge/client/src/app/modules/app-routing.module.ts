@@ -4,15 +4,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "../app.component";
 import { AddPageComponent } from "../pages/add-page/add-page.component";
 import { DeletePageComponent } from "../pages/delete-page/delete-page.component";
-import { WelcomePageComponent } from "../pages/welcome-page/welcome-page.component";
 import { PlanRepasTableComponent } from "../plan-repas-table/plan-repas-table.component";
 
 const routes: Routes = [
   {
     path: "app", component: AppComponent,
-  },
-  {
-    path: "welcome", component: WelcomePageComponent,
   },
  
   {
@@ -27,7 +23,7 @@ const routes: Routes = [
   {
     path: "delete", component: DeletePageComponent,
   },
-  { path: '**', redirectTo: 'welcome' }
+  { path: '**', redirectTo: 'app' }
 ];
 
 @NgModule({
