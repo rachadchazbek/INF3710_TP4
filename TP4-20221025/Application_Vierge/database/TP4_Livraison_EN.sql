@@ -140,7 +140,7 @@ INSERT INTO Planrepas VALUES ('P001', 'Mediteranien', '2 Fois par semaine', 1, 1
 INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
 INSERT INTO Planrepas VALUES ('P003', 'cetogene', '3 Fois par semaine', 1, 2000, 20, 'F003');
 INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
-INSERT INTO Planrepas VALUES ('P005', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004')
+INSERT INTO Planrepas VALUES ('P005', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
 INSERT INTO Planrepas VALUES ('P006', 'Vegan', '1 Fois par semaine', 1, 1000, 25, 'F001');
 INSERT INTO Planrepas VALUES ('P007', 'Vegetarien', '5 Fois par semaine', 2, 1500, 15, 'F002');
 
