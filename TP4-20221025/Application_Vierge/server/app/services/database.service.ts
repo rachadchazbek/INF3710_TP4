@@ -79,4 +79,14 @@ export class DatabaseService {
 
     return res;
   }
+
+  // === Fournisseur ===
+  public async getAllFournisseurs(): Promise<pg.QueryResult> {
+    const client = await this.pool.connect();
+
+    const res = await client.query(`SELECT * FROM Fournisseur;`);
+    client.release();
+
+    return res;
+  }
 }

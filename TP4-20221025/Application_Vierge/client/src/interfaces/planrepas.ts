@@ -11,3 +11,12 @@ export class PlanRepas {
           }
       }
 
+export class Fournisseur {
+    numerofournisseur: string;
+    nomfournisseur: string;
+    adressefournisseur: string;
+    public constructor(init?: Partial<Fournisseur>) {
+        Object.assign(this, init);
+    }
+}
+

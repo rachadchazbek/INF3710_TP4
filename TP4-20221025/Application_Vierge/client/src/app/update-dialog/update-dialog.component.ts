@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PlanRepas } from 'src/interfaces/planrepas';
+import { Fournisseur, PlanRepas } from 'src/interfaces/planrepas';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { ClientControllerService } from '../services/client-controller.service';
 
@@ -11,44 +11,46 @@ import { ClientControllerService } from '../services/client-controller.service';
   styleUrls: ['./update-dialog.component.css']
 })
 export class UpdateDialogComponent implements OnInit {
+  fournisseurs: Fournisseur[];
   updatedForm: FormGroup;
   updatedPlanRepas: PlanRepas;
   initialForm: PlanRepas;
   confirmed: boolean = false;
-  constructor(public dialogRef: MatDialogRef<AddDialogComponent>, @Inject(MAT_DIALOG_DATA) public data : any, private readonly controller: ClientControllerService) { }
+  constructor(public dialogRef: MatDialogRef<AddDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private readonly controller: ClientControllerService) { }
 
   ngOnInit(): void {
     console.log(this.data.numeroplan);
-    this.controller.getPlanRepas(this.data.numeroplan).subscribe((result: PlanRepas[])=>{ 
-      console.log(result); 
+    this.controller.getPlanRepas(this.data.numeroplan).subscribe((result: PlanRepas[]) => {
+      console.log(result);
       this.initialForm = new PlanRepas(result[0]);
       this.updatedForm = new FormGroup({
         numeroplan: new FormControl(this.initialForm.numeroplan),
         categorie: new FormControl(this.initialForm.categorie,[Validators.required, Validators.maxLength(20)]),
         frequence: new FormControl(this.initialForm.frequence,[Validators.required, Validators.maxLength(20)]),
         nbrpersonnes: new FormControl(this.initialForm.nbrpersonnes, [Validators.required]),
-        nbrcalories: new FormControl(this.initialForm.nbrcalories,[Validators.required]),
-        prix: new FormControl(this.initialForm.prix,[Validators.required]),
-        numerofournisseur: new FormControl(this.initialForm.numerofournisseur,[Validators.required, Validators.maxLength(4)])
-  
+        nbrcalories: new FormControl(this.initialForm.nbrcalories, [Validators.required]),
+        prix: new FormControl(this.initialForm.prix, [Validators.required]),
+        numerofournisseur: new FormControl(this.initialForm.numerofournisseur, [Validators.required, Validators.maxLength(4)])
+      });
+      console.log(this.initialForm.numeroplan);
     });
+    this.controller.getAllFournisseurs().subscribe((result: Fournisseur[]) => {
+      this.fournisseurs = result;
     });
-    
-    
   }
   updatePlanRepas(): void {
     this.updatedPlanRepas = new PlanRepas(this.updatedForm.value);
-    // this.updatedPlanRepas.numeroplan = this.initialForm.numeroplan;
-    console.log(this.updatedPlanRepas);
-    try{
-    this.controller.updatePlanRepas(this.updatedPlanRepas).subscribe();
-    this.dialogRef.close("Successfully updated!")
-    alert("Succesfully updated")
+    try {
+      this.controller.updatePlanRepas(this.updatedPlanRepas).subscribe();
+      this.dialogRef.close("Successfully updated!")
+      alert("Succesfully updated")
     }
-    catch { this.dialogRef.close("Error: Retry to update")
-  alert("Error: Veuillez Reessayer de modifier ")}
+    catch {
+      this.dialogRef.close("Error: Retry to update")
+      alert("Error: Veuillez Reessayer de modifier ")
+    }
   }
-  confirm(): void{
+  confirm(): void {
     this.confirmed = true;
   }
 }
