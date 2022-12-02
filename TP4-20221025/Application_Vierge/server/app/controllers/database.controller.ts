@@ -31,6 +31,18 @@ export class DatabaseController {
       }
     });
 
+    this.router.get('/fournisseurs', async (req, res) => {
+      console.log("test");
+      try {
+        const allFournisseurs = await this.databaseService.getAllFournisseurs();
+        console.log(allFournisseurs);
+        res.status(HTTP_OK).json(allFournisseurs.rows);
+      }
+      catch (error) {
+        res.status(HTTP_ERROR).json(error);
+      }
+    });
+
     this.router.get('/:numeroplan', async (req, res) => {
       try {
         const planRepas = await this.databaseService.getPlanRepas(req.params.numeroplan);
@@ -43,7 +55,7 @@ export class DatabaseController {
 
     this.router.post('/', async (req, res) => {
       try {
-        this.databaseService.createPlanRepas(req.body).then(() => { res.status(HTTP_CREATED).json() });
+        await this.databaseService.createPlanRepas(req.body).then(() => { res.status(HTTP_CREATED).json() });
       }
       catch {
         res.status(HTTP_ERROR);
@@ -51,9 +63,9 @@ export class DatabaseController {
 
     });
 
-    this.router.patch('/', (req, res) => {
+    this.router.patch('/', async (req, res) => {
       try {
-        this.databaseService.updatePlanRepas(req.body).then(() => { res.status(HTTP_CREATED).json() });
+        await this.databaseService.updatePlanRepas(req.body).then(() => { res.status(HTTP_CREATED).json() });
         res.status(HTTP_CREATED);
       }
       catch {
@@ -65,13 +77,9 @@ export class DatabaseController {
       this.databaseService.deletePlanRepas(req.body).then(() => { res.status(HTTP_OK).json() }).catch((error) => { res.status(HTTP_ERROR).json(error) });
     });
 
-    this.router.get('/fournisseurs', (req, res) => {
-      this.databaseService.getAllFournisseurs().then((result) => { res.status(HTTP_OK).json(result.rows) }).catch((error) => { res.status(HTTP_ERROR).json(error) });
-    });
-
-    this.router.get('/debug', (req, res) => {
+    this.router.get('/debug', async (req, res) => {
       try {
-        this.databaseService.poolDemo();
+        await this.databaseService.poolDemo();
         res.status(HTTP_OK);
       }
       catch {
