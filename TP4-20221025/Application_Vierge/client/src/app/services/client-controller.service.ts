@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PlanRepas } from 'src/interfaces/planrepas';
+import { Fournisseur, PlanRepas } from 'src/interfaces/planrepas';
 
 const END_POINT = environment.serverUrl + 'planRepas';
 @Injectable({
@@ -18,6 +18,10 @@ export class ClientControllerService {
 
     getAllPlanRepas(): Observable<PlanRepas[]> {
         return this.http.get<PlanRepas[]>(END_POINT).pipe(catchError(this.handleError<PlanRepas[]>('basicGet')));
+    }
+
+    getAllFournisseurs(): Observable<Fournisseur[]> {
+        return this.http.get<Fournisseur[]>(END_POINT).pipe(catchError(this.handleError<Fournisseur[]>('basicGet')));
     }
 
     updatePlanRepas(planRepas: PlanRepas): Observable<void> {
