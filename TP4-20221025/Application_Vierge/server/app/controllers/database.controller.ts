@@ -62,7 +62,7 @@ export class DatabaseController {
     });
 
     this.router.delete('/:numeroplan', (req, res) => {
-      this.databaseService.deletePlanRepas(req.body).then(() => { res.status(HTTP_OK).json() }).catch((error) => { res.status(HTTP_ERROR).json(error) });
+      this.databaseService.deletePlanRepas(req.params.numeroplan).then(() => { res.status(HTTP_OK).json() }).catch((error) => { res.status(HTTP_ERROR).json(error) });
     });
 
 

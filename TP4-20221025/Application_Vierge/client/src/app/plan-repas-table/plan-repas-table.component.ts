@@ -8,7 +8,7 @@ import { ClientControllerService } from '../services/client-controller.service';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 
 
-const DELETE_CONFIRMATION_MESSAGE = 'Est ce que vous êtes sure de modifier?';
+const DELETE_CONFIRMATION_MESSAGE = 'Est ce que vous êtes sure de supprimer?';
 @Component({
   selector: 'app-plan-repas-table',
   templateUrl: './plan-repas-table.component.html',
@@ -64,8 +64,11 @@ export class PlanRepasTableComponent implements OnInit {
         width: '350px'
       });
       deleteDialog.afterClosed().subscribe((confirmed: boolean) => {
+        if(confirmed){
+        this.controller.deletePlanrepas(numeroplan);
+        }
       });
-      this.controller.deletePlanrepas(numeroplan);
+     
     }
     catch{}
   }
