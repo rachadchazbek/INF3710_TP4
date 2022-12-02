@@ -53,4 +53,7 @@ export class UpdateDialogComponent implements OnInit {
   confirm(): void {
     this.confirmed = true;
   }
+  close(): void {
+    this.dialogRef.close();
+}
 }

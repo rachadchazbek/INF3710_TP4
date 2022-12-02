@@ -24,13 +24,17 @@ export class DialogComponent {
   }
 
   onConfirmClick(): void {
-    this.dialogRef.close(true);
     try{
-      this.controller.deletePlanrepas(this.data.numeroplan);
+      console.log("dnjn");
+      this.controller.deletePlanrepas(this.data.numeroplan).subscribe();
+      this.dialogRef.close(true);
       //TO DO : Open snackbar WORKED:
     }
     catch{
       // Open snackbar error
     }
   }
+  close(): void {
+    this.dialogRef.close();
+}
 }

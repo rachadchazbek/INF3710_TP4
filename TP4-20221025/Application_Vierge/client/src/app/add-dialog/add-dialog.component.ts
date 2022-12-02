@@ -40,4 +40,7 @@ export class AddDialogComponent implements OnInit {
   confirm(): void{
     this.confirmed = true;
   }
+  close(): void {
+    this.dialogRef.close();
+  }
 }
