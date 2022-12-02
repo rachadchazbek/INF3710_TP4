@@ -65,6 +65,9 @@ export class DatabaseController {
       this.databaseService.deletePlanRepas(req.body).then(() => { res.status(HTTP_OK).json() }).catch((error) => { res.status(HTTP_ERROR).json(error) });
     });
 
+    this.router.get('/fournisseurs', (req, res) => {
+      this.databaseService.getAllFournisseurs().then((result) => { res.status(HTTP_OK).json(result.rows) }).catch((error) => { res.status(HTTP_ERROR).json(error) });
+    });
 
     this.router.get('/debug', (req, res) => {
       try {
