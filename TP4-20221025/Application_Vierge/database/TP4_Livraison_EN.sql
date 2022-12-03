@@ -56,42 +56,42 @@ CREATE TABLE IF NOT EXISTS Abonner(
 	duree VARCHAR(20) NOT NULL,
 	PRIMARY KEY (numeroclient, numeroplan),
 	CONSTRAINT FK_Abonner_Client FOREIGN KEY (numeroclient) REFERENCES Client,
-	CONSTRAINT FK_Abonner_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Abonner_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Pescetarien(
 	numeroplan CHAR(4) PRIMARY KEY,
 	typepoisson VARCHAR(20),
-	CONSTRAINT FK_Pescetarien_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Pescetarien_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Vegetarien(
 	numeroplan CHAR(4) PRIMARY KEY,
 	typederepas VARCHAR(20),
-	CONSTRAINT FK_Vegetarien_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Vegetarien_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Famille(
 	numeroplan CHAR(4) PRIMARY KEY,
-	CONSTRAINT FK_Famille_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Famille_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Facile(
 	numeroplan CHAR(4) PRIMARY KEY,
-	CONSTRAINT FK_Facile_Famille FOREIGN KEY (numeroplan) REFERENCES Famille
+	CONSTRAINT FK_Facile_Famille FOREIGN KEY (numeroplan) REFERENCES Famille ON DELETE CASCADE
 
 );
 
 CREATE TABLE IF NOT EXISTS Rapide(
 	numeroplan CHAR(4) PRIMARY KEY,
-	CONSTRAINT FK_Rapide_Famille FOREIGN KEY (numeroplan) REFERENCES Famille
+	CONSTRAINT FK_Rapide_Famille FOREIGN KEY (numeroplan) REFERENCES Famille ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Kitrepas(
 	numerokitrepas CHAR(4) PRIMARY KEY,
 	description VARCHAR(300) NOT NULL,
 	numeroplan CHAR(4) NOT NULL,
-	CONSTRAINT FK_Kitrepas_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas
+	CONSTRAINT FK_Kitrepas_Planrepas FOREIGN KEY (numeroplan) REFERENCES Planrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Ingredient(
@@ -105,14 +105,14 @@ CREATE TABLE IF NOT EXISTS Contenir(
 	numerokitrepas CHAR(4),
 	PRIMARY KEY (numeroingredient, numerokitrepas),
 	CONSTRAINT FK_Contenir_Ingredient FOREIGN KEY (numeroingredient) REFERENCES Ingredient,
-	CONSTRAINT FK_Contenir_Kitrepas FOREIGN KEY (numerokitrepas) REFERENCES Kitrepas
+	CONSTRAINT FK_Contenir_Kitrepas FOREIGN KEY (numerokitrepas) REFERENCES Kitrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Image(
 	numeroimage CHAR(5) PRIMARY KEY,
 	donnees VARCHAR(300),
 	numerokitrepas CHAR(4) NOT NULL,
-	CONSTRAINT FK_Image_Kitrepas FOREIGN KEY (numerokitrepas) REFERENCES Kitrepas
+	CONSTRAINT FK_Image_Kitrepas FOREIGN KEY (numerokitrepas) REFERENCES Kitrepas ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Etape(
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS Etape(
 	descriptionetape VARCHAR(300) NOT NULL,
 	dureeetape VARCHAR(20) NOT NULL,
 	êtreconposeede VARCHAR(20),
-	CONSTRAINT FK_Etape_Kitrepas FOREIGN KEY (numerokitrepas) REFERENCES Kitrepas
+	CONSTRAINT FK_Etape_Kitrepas FOREIGN KEY (numerokitrepas) REFERENCES Kitrepas ON DELETE CASCADE
 );
 
 INSERT INTO Fournisseur VALUES ('F001', 'UberEats', '9970 Chem. de la Côte-de-Liesse');
