@@ -127,6 +127,9 @@ INSERT INTO Fournisseur VALUES ('F001', 'UberEats', '9970 Chem. de la Côte-de-L
 INSERT INTO Fournisseur VALUES ('F002', 'DoorDash', '5995 Boul Gouin O Suite #218');
 INSERT INTO Fournisseur VALUES ('F003', 'AB Transport', '1000 Rue Sherbrooke O');
 INSERT INTO Fournisseur VALUES ('F004', 'QC Transport', '234 Rue Sainte-Catherine');
+INSERT INTO Fournisseur VALUES ('F005', 'Foodora', '9402 Rue Ontario E');
+INSERT INTO Fournisseur VALUES ('F006', 'SkipTheDishes', '1000 902 avenue du Mont-Royal E');
+INSERT INTO Fournisseur VALUES ('F007', 'JustEat', '2314 Rue Sainte Hyacinthe');
 
 INSERT INTO Client VALUES ('C001', 'Tero', 'Fadi', 'faditero@gmail.com', '398 Rue Ouimet', 'Montreal', 'H4L5M9');
 INSERT INTO Client VALUES ('C002', 'Chazbek', 'Rachad', 'rachachazbek@gmail.com', '15 Boulevard La Fayette', 'Longueuil', 'J4K0B2');
@@ -138,11 +141,24 @@ INSERT INTO Telephone VALUES ('C003', '514-568-1345');
 
 INSERT INTO Planrepas VALUES ('P001', 'Mediteranien', '2 Fois par semaine', 1, 1000, 25, 'F001');
 INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
-INSERT INTO Planrepas VALUES ('P003', 'cetogene', '3 Fois par semaine', 1, 2000, 20, 'F003');
+INSERT INTO Planrepas VALUES ('P003', 'Cetogene', '3 Fois par semaine', 1, 2000, 20, 'F003');
 INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
 INSERT INTO Planrepas VALUES ('P005', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
 INSERT INTO Planrepas VALUES ('P006', 'Vegan', '1 Fois par semaine', 1, 1000, 25, 'F001');
 INSERT INTO Planrepas VALUES ('P007', 'Vegetarien', '5 Fois par semaine', 2, 1500, 15, 'F002');
+INSERT INTO Planrepas VALUES ('P008', 'Pescetarien', '3 Fois par semaine', 1, 2000, 20, 'F003');
+INSERT INTO Planrepas VALUES ('P009', 'Famille', '2 Fois par semaine', 4, 4000, 17.5, 'F007');
+INSERT INTO Planrepas VALUES ('P010', 'Asiatique', '2 Fois par semaine', 3, 2000, 45, 'F006');
+INSERT INTO Planrepas VALUES ('P011', 'Americain', '1 Fois par semaine', 1, 1000, 25, 'F005');
+INSERT INTO Planrepas VALUES ('P012', 'Mexicain', '5 Fois par semaine', 2, 1500, 15, 'F004');
+INSERT INTO Planrepas VALUES ('P013', 'Francais', '3 Fois par semaine', 1, 2000, 20, 'F007');
+INSERT INTO Planrepas VALUES ('P014', 'Grec', '2 Fois par semaine', 4, 4000, 17.5, 'F006');
+INSERT INTO Planrepas VALUES ('P015', 'Indien', '2 Fois par semaine', 3, 2000, 45, 'F005');
+INSERT INTO Planrepas VALUES ('P016', 'Japonais', '1 Fois par semaine', 1, 1000, 25, 'F004');
+INSERT INTO Planrepas VALUES ('P017', 'Chinois', '5 Fois par semaine', 2, 1500, 15, 'F003');
+INSERT INTO Planrepas VALUES ('P018', 'Marocain', '3 Fois par semaine', 1, 2000, 20, 'F006');
+INSERT INTO Planrepas VALUES ('P019', 'Turc', '2 Fois par semaine', 4, 4000, 17.5, 'F001');
+INSERT INTO Planrepas VALUES ('P020', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
 
 INSERT INTO Abonner VALUES ('C001', 'P001', '1 Mois');
 INSERT INTO Abonner VALUES ('C001', 'P004', '1 Mois');
@@ -159,6 +175,7 @@ INSERT INTO Vegetarien VALUES ('P003', 'Salade de Quinoa');
 
 INSERT INTO Famille VALUES ('P002');
 INSERT INTO Famille VALUES ('P003');
+
 
 INSERT INTO Facile VALUES ('P002');
 
