@@ -13,9 +13,12 @@ export class AddDialogComponent implements OnInit {
   addForm: FormGroup;
   newPlanRepas: PlanRepas;
   confirmed: boolean = false;
+  numeroPlan:string;
   constructor(public dialogRef: MatDialogRef<AddDialogComponent>, private readonly controller: ClientControllerService) { }
 
   ngOnInit(): void {
+    //this.getnumeroPlan().then((num)=>this.numeroPlan = num);
+    console.log(this.numeroPlan);
     this.addForm = new FormGroup({
       numeroplan: new FormControl("",[Validators.required, Validators.maxLength(4)]),
       categorie: new FormControl("",[Validators.required, Validators.maxLength(20)]),
@@ -26,6 +29,32 @@ export class AddDialogComponent implements OnInit {
       numerofournisseur: new FormControl("",[Validators.required, Validators.maxLength(4)])
 
   });
+  }
+  async getnumeroPlan(): Promise<string> {
+    const DEFAULT_NOPLAN = 'P0'
+    let index = 1;
+    let notFound = true;
+    let current_num: string = "";
+    while(notFound){
+       current_num= DEFAULT_NOPLAN.concat(index.toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      }).toString());
+      try{
+        console.log("a");
+        this.controller.getPlanRepas(current_num).subscribe((result:PlanRepas[]) =>{
+            if(!result[0]){
+              notFound = false;
+            }
+        });
+        index+=1;
+      }
+      catch{
+       
+      }
+    }
+    return current_num;
+     
   }
   addPlanRepas(): void {
     this.newPlanRepas = new PlanRepas(this.addForm.value);
