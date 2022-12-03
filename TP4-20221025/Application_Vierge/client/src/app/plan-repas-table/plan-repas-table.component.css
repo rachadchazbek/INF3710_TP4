@@ -20,8 +20,9 @@ mat-form-field {
 }
 
 table {
+    margin-top: 2rem;
     width: 100%;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
 }
 
 mat-spinner {
@@ -43,6 +44,43 @@ img {
 }
 
 button {
-    float:right;
     margin: 0.2rem;
+    float: right;
+}
+
+math-column-numeroplan {
+    width: 10%;
+}
+
+math-column-categorie {
+    width: 16%;
+}
+
+
+math-column-frequence {
+    width: 16%;
+}
+
+
+math-column-nbrcalories {
+    width: 16%;
+}
+
+math-column-numerofournisseur {
+    width: 16%;
+}
+
+
+math-column-prix {
+    width: 16%;
+}
+
+
+math-column-actions {
+    width: 10%;
+}
+
+.container {
+    font-size: 22px;
+    min-width: 80%;
 }

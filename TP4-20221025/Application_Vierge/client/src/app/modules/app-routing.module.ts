@@ -10,7 +10,8 @@ const routes: Routes = [
     path: "app", component: AppComponent,
   },
   {
-    path: "welcome", component: WelcomePageComponent  },
+    path: "welcome", component: WelcomePageComponent
+  },
   {
     path: "planrepas", component: PlanRepasTableComponent
   },

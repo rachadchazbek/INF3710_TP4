@@ -1,6 +1,6 @@
 <p>Liste des Plan repas </p>
 <button mat-raised-button color="primary" class="button" (click)="add({})"> Ajouter un planrepas</button>
-<div *ngIf="allPlanRepas?.length ?? 0 > 0">
+<div *ngIf="allPlanRepas?.length ?? 0 > 0" class="container">
     <table mat-table [dataSource]="allPlanRepas" class="mat-elevation-z8">
         <ng-container matColumnDef="numeroplan">
             <th mat-header-cell *matHeaderCellDef>NumeroPlan</th>
@@ -8,32 +8,32 @@
         </ng-container>
         
         <ng-container matColumnDef="categorie">
-            <th mat-header-cell *matHeaderCellDef>categorie</th>
+            <th mat-header-cell *matHeaderCellDef>Catégorie</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.categorie }}</td>
         </ng-container>
         <ng-container matColumnDef="frequence">
-            <th mat-header-cell *matHeaderCellDef>frequence</th>
+            <th mat-header-cell *matHeaderCellDef>Fréquence</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.frequence }}</td>
         </ng-container>
         <ng-container matColumnDef="nbrcalories">
-            <th mat-header-cell *matHeaderCellDef>NbrCalories</th>
+            <th mat-header-cell *matHeaderCellDef>Nombre de Calories</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.nbrcalories }}</td>
         </ng-container>
         <ng-container matColumnDef="nbrpersonnes">
-            <th mat-header-cell *matHeaderCellDef>NbrPersonnes</th>
+            <th mat-header-cell *matHeaderCellDef>Nombre de Personnes</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.nbrpersonnes }}</td>
         </ng-container>
-        <ng-container matColumnDef="numerofournisseur">
-            <th mat-header-cell *matHeaderCellDef>NbrPersonnes</th>
+        <ng-container matColumnDef="numerofournisseur"> 
+            <th mat-header-cell *matHeaderCellDef>Fournisseur</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.numerofournisseur }}</td>
         </ng-container>
         <ng-container matColumnDef="prix">
-            <th mat-header-cell *matHeaderCellDef>NumeroPlan</th>
-            <td mat-cell *matCellDef="let planrepas">{{ planrepas.numeroplan }}</td>
+            <th mat-header-cell *matHeaderCellDef>Prix</th>
+            <td mat-cell *matCellDef="let planrepas">{{ planrepas.prix }}</td>
         </ng-container>
         
         <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let planrepas">
                 
                 <button mat-fab color="primary" class="button"  (click)="update(planrepas.numeroplan)"> 
