@@ -48,36 +48,49 @@ button {
     float: right;
 }
 
-math-column-numeroplan {
+mat-column-numeroplan {
     width: 10%;
 }
 
-math-column-categorie {
+mat-column-categorie {
     width: 16%;
 }
 
 
-math-column-frequence {
+mat-column-frequence {
+    width: 16%;
+}
+
+mat-column-nbrpersonnes {
+    width: 5%;
+}
+
+
+mat-column-nbrcalories {
+    width: 16%;
+}
+
+mat-column-numerofournisseur {
     width: 16%;
 }
 
 
-math-column-nbrcalories {
-    width: 16%;
-}
-
-math-column-numerofournisseur {
+mat-column-prix {
     width: 16%;
 }
 
 
-math-column-prix {
-    width: 16%;
+mat-column-action {
+    width: 5%;
+    display: flex;
+    justify-content: flex-end;
 }
 
-
-math-column-actions {
-    width: 10%;
+.action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: inherit;
 }
 
 .container {
