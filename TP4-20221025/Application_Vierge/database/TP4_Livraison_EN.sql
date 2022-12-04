@@ -39,8 +39,10 @@ CREATE TABLE IF NOT EXISTS Telephone(
 	CONSTRAINT FK_Telephne_Client FOREIGN KEY (numeroclient) REFERENCES Client
 );
 
+CREATE SEQUENCE tag_seq START WITH 101;
+
 CREATE TABLE IF NOT EXISTS Planrepas(
-	numeroplan CHAR(4) PRIMARY KEY,
+	numeroplan TEXT NOT NULL DEFAULT 'P' || nextval('tag_seq') UNIQUE,
 	categorie VARCHAR(20),
 	frequence VARCHAR(20),
 	nbrpersonnes INT,
@@ -139,53 +141,53 @@ INSERT INTO Telephone VALUES ('C001', '514-111-1111');
 INSERT INTO Telephone VALUES ('C002', '514-561-7179');
 INSERT INTO Telephone VALUES ('C003', '514-568-1345');
 
-INSERT INTO Planrepas VALUES ('P001', 'Mediteranien', '2 Fois par semaine', 1, 1000, 25, 'F001');
-INSERT INTO Planrepas VALUES ('P002', 'Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
-INSERT INTO Planrepas VALUES ('P003', 'Cetogene', '3 Fois par semaine', 1, 2000, 20, 'F003');
-INSERT INTO Planrepas VALUES ('P004', 'Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
-INSERT INTO Planrepas VALUES ('P005', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
-INSERT INTO Planrepas VALUES ('P006', 'Vegan', '1 Fois par semaine', 1, 1000, 25, 'F001');
-INSERT INTO Planrepas VALUES ('P007', 'Vegetarien', '5 Fois par semaine', 2, 1500, 15, 'F002');
-INSERT INTO Planrepas VALUES ('P008', 'Pescetarien', '3 Fois par semaine', 1, 2000, 20, 'F003');
-INSERT INTO Planrepas VALUES ('P009', 'Famille', '2 Fois par semaine', 4, 4000, 17.5, 'F007');
-INSERT INTO Planrepas VALUES ('P010', 'Asiatique', '2 Fois par semaine', 3, 2000, 45, 'F006');
-INSERT INTO Planrepas VALUES ('P011', 'Americain', '1 Fois par semaine', 1, 1000, 25, 'F005');
-INSERT INTO Planrepas VALUES ('P012', 'Mexicain', '5 Fois par semaine', 2, 1500, 15, 'F004');
-INSERT INTO Planrepas VALUES ('P013', 'Francais', '3 Fois par semaine', 1, 2000, 20, 'F007');
-INSERT INTO Planrepas VALUES ('P014', 'Grec', '2 Fois par semaine', 4, 4000, 17.5, 'F006');
-INSERT INTO Planrepas VALUES ('P015', 'Indien', '2 Fois par semaine', 3, 2000, 45, 'F005');
-INSERT INTO Planrepas VALUES ('P016', 'Japonais', '1 Fois par semaine', 1, 1000, 25, 'F004');
-INSERT INTO Planrepas VALUES ('P017', 'Chinois', '5 Fois par semaine', 2, 1500, 15, 'F003');
-INSERT INTO Planrepas VALUES ('P018', 'Marocain', '3 Fois par semaine', 1, 2000, 20, 'F006');
-INSERT INTO Planrepas VALUES ('P019', 'Turc', '2 Fois par semaine', 4, 4000, 17.5, 'F001');
-INSERT INTO Planrepas VALUES ('P020', 'Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Mediteranien', '2 Fois par semaine', 1, 1000, 25, 'F001');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Italien', '1 Fois par semaine', 2, 1500, 15, 'F002');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Cetogene', '3 Fois par semaine', 1, 2000, 20, 'F003');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Mix', '2 Fois par semaine', 4, 4000, 17.5, 'F002');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Vegan', '1 Fois par semaine', 1, 1000, 25, 'F001');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Vegetarien', '5 Fois par semaine', 2, 1500, 15, 'F002');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Pescetarien', '3 Fois par semaine', 1, 2000, 20, 'F003');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Famille', '2 Fois par semaine', 4, 4000, 17.5, 'F007');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Asiatique', '2 Fois par semaine', 3, 2000, 45, 'F006');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Americain', '1 Fois par semaine', 1, 1000, 25, 'F005');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Mexicain', '5 Fois par semaine', 2, 1500, 15, 'F004');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Francais', '3 Fois par semaine', 1, 2000, 20, 'F007');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Grec', '2 Fois par semaine', 4, 4000, 17.5, 'F006');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Indien', '2 Fois par semaine', 3, 2000, 45, 'F005');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Japonais', '1 Fois par semaine', 1, 1000, 25, 'F004');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Chinois', '5 Fois par semaine', 2, 1500, 15, 'F003');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Marocain', '3 Fois par semaine', 1, 2000, 20, 'F006');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Turc', '2 Fois par semaine', 4, 4000, 17.5, 'F001');
+INSERT INTO Planrepas (categorie, frequence, nbrpersonnes, nbrcalories, prix, numerofournisseur) VALUES ('Libanais', '2 Fois par semaine', 3, 2000, 45, 'F004');
 
-INSERT INTO Abonner VALUES ('C001', 'P001', '1 Mois');
-INSERT INTO Abonner VALUES ('C001', 'P004', '1 Mois');
-INSERT INTO Abonner VALUES ('C001', 'P003', '3 Semaines');
-INSERT INTO Abonner VALUES ('C002', 'P002', '2 Semaines');
-INSERT INTO Abonner VALUES ('C003', 'P003', '1 An');
-INSERT INTO Abonner VALUES ('C002', 'P005', '4 Semaines');
+INSERT INTO Abonner VALUES ('C001', 'P101', '1 Mois');
+INSERT INTO Abonner VALUES ('C001', 'P104', '1 Mois');
+INSERT INTO Abonner VALUES ('C001', 'P103', '3 Semaines');
+INSERT INTO Abonner VALUES ('C002', 'P102', '2 Semaines');
+INSERT INTO Abonner VALUES ('C003', 'P103', '1 An');
+INSERT INTO Abonner VALUES ('C002', 'P105', '4 Semaines');
 
-INSERT INTO Pescetarien VALUES ('P001', 'Saumon');
-INSERT INTO Pescetarien VALUES ('P002', 'Truite');
+INSERT INTO Pescetarien VALUES ('P101', 'Saumon');
+INSERT INTO Pescetarien VALUES ('P102', 'Truite');
 
-INSERT INTO Vegetarien VALUES ('P002', 'Lasagne aux Epinards');
-INSERT INTO Vegetarien VALUES ('P003', 'Salade de Quinoa');
+INSERT INTO Vegetarien VALUES ('P102', 'Lasagne aux Epinards');
+INSERT INTO Vegetarien VALUES ('P103', 'Salade de Quinoa');
 
-INSERT INTO Famille VALUES ('P002');
-INSERT INTO Famille VALUES ('P003');
+INSERT INTO Famille VALUES ('P102');
+INSERT INTO Famille VALUES ('P103');
 
 
-INSERT INTO Facile VALUES ('P002');
+INSERT INTO Facile VALUES ('P102');
 
-INSERT INTO Rapide VALUES ('P003');
+INSERT INTO Rapide VALUES ('P103');
 
-INSERT INTO Kitrepas VALUES ('K001', 'Savoureux', 'P001');
-INSERT INTO Kitrepas VALUES ('K002', 'Sweet et Cremeux!', 'P002');
-INSERT INTO Kitrepas VALUES ('K003', 'Sweet', 'P003');
-INSERT INTO Kitrepas VALUES ('K004', 'Suprise!', 'P004');
-INSERT INTO Kitrepas VALUES ('K005', 'Basic', 'P007');
+INSERT INTO Kitrepas VALUES ('K001', 'Savoureux', 'P101');
+INSERT INTO Kitrepas VALUES ('K002', 'Sweet et Cremeux!', 'P102');
+INSERT INTO Kitrepas VALUES ('K003', 'Sweet', 'P103');
+INSERT INTO Kitrepas VALUES ('K004', 'Suprise!', 'P104');
+INSERT INTO Kitrepas VALUES ('K005', 'Basic', 'P107');
 
 INSERT INTO Ingredient VALUES ('I001', 'Chili', 'Mexique');
 INSERT INTO Ingredient VALUES ('I002', 'Cury', 'Inde');

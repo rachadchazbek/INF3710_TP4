@@ -25,8 +25,8 @@ export class UpdateDialogComponent implements OnInit {
       this.initialForm = new PlanRepas(result[0]);
       this.updatedForm = new FormGroup({
         numeroplan: new FormControl(this.initialForm.numeroplan),
-        categorie: new FormControl(this.initialForm.categorie,[Validators.required, Validators.maxLength(20)]),
-        frequence: new FormControl(this.initialForm.frequence,[Validators.required, Validators.maxLength(20)]),
+        categorie: new FormControl(this.initialForm.categorie, [Validators.required, Validators.maxLength(20)]),
+        frequence: new FormControl(this.initialForm.frequence, [Validators.required, Validators.maxLength(20)]),
         nbrpersonnes: new FormControl(this.initialForm.nbrpersonnes, [Validators.required]),
         nbrcalories: new FormControl(this.initialForm.nbrcalories, [Validators.required]),
         prix: new FormControl(this.initialForm.prix, [Validators.required]),
@@ -55,5 +55,5 @@ export class UpdateDialogComponent implements OnInit {
   }
   close(): void {
     this.dialogRef.close();
-}
+  }
 }

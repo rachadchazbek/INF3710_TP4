@@ -11,67 +11,68 @@ import { ClientControllerService } from '../services/client-controller.service';
 })
 export class AddDialogComponent implements OnInit {
   addForm: FormGroup;
+  numeroPlan: string;
   newPlanRepas: PlanRepas;
   confirmed: boolean = false;
-  numeroPlan:string;
   constructor(public dialogRef: MatDialogRef<AddDialogComponent>, private readonly controller: ClientControllerService) { }
 
   ngOnInit(): void {
     //this.getnumeroPlan().then((num)=>{this.numeroPlan = num});
-    this.controller.getPlanRepas("P00").subscribe((result)=>{console.log(result)});
+    this.controller.getPlanRepas("P00").subscribe((result) => { console.log(result) });
     console.log(this.numeroPlan);
     this.addForm = new FormGroup({
-      numeroplan: new FormControl("",[Validators.required, Validators.maxLength(4)]),
-      categorie: new FormControl("",[Validators.required, Validators.maxLength(20)]),
-      frequence: new FormControl("",[Validators.required, Validators.maxLength(20)]),
+      numeroplan: new FormControl(""),
+      categorie: new FormControl("", [Validators.required, Validators.maxLength(20)]),
+      frequence: new FormControl("", [Validators.required, Validators.maxLength(20)]),
       nbrpersonnes: new FormControl([Validators.required]),
       nbrcalories: new FormControl([Validators.required]),
       prix: new FormControl([Validators.required]),
-      numerofournisseur: new FormControl("",[Validators.required, Validators.maxLength(4)])
-
-  });
+      numerofournisseur: new FormControl("", [Validators.required, Validators.maxLength(4)])
+    });
   }
   // async getnumeroPlan(): string {
   //   let planRepas: PlanRepas[] = await this.controller.getAllPlanRepas().subscribe();
   //   let lastnum  = list[list.length].numeroplan;
   //   return num
-    // const DEFAULT_NOPLAN = 'P0'
-    // let index = 1;
-    // let notFound = true;
-    // let current_num: string = "";
-    // while(notFound){
-    //   console.log(index);
-    //    current_num= DEFAULT_NOPLAN.concat(index.toLocaleString('en-US', {
-    //     minimumIntegerDigits: 2,
-    //     useGrouping: false
-    //   }).toString());
-    //     await this.controller.getPlanRepas(current_num).subscribe((result) =>{
-    //       console.log(result.length===0);
-    //         if(result.length===0){
-    //           notFound = false;
-    //         }
-    //         index+=1;
-    //         console.log("a");
-    //     });
-    //     console.log("ab")
-    //     notFound = false;
-      
-        
+  // const DEFAULT_NOPLAN = 'P0'
+  // let index = 1;
+  // let notFound = true;
+  // let current_num: string = "";
+  // while(notFound){
+  //   console.log(index);
+  //    current_num= DEFAULT_NOPLAN.concat(index.toLocaleString('en-US', {
+  //     minimumIntegerDigits: 2,
+  //     useGrouping: false
+  //   }).toString());
+  //     await this.controller.getPlanRepas(current_num).subscribe((result) =>{
+  //       console.log(result.length===0);
+  //         if(result.length===0){
+  //           notFound = false;
+  //         }
+  //         index+=1;
+  //         console.log("a");
+  //     });
+  //     console.log("ab")
+  //     notFound = false;
+
+
   //   }
   //   return current_num;
-     
+
   // }
   addPlanRepas(): void {
     this.newPlanRepas = new PlanRepas(this.addForm.value);
-    try{
-    this.controller.addPlanrepas(this.newPlanRepas).subscribe();
-    this.dialogRef.close("Successfully added!")
-    alert("Succesfully Added")
+    try {
+      this.controller.addPlanrepas(this.newPlanRepas).subscribe();
+      this.dialogRef.close("Successfully added!")
+      alert("Succesfully Added")
     }
-    catch { this.dialogRef.close("Error: Retry to add")
-  alert("Error: Veuillez Reessayer d'ajouter ")}
+    catch {
+      this.dialogRef.close("Error: Retry to add")
+      alert("Error: Veuillez Reessayer d'ajouter ")
+    }
   }
-  confirm(): void{
+  confirm(): void {
     this.confirmed = true;
   }
   close(): void {
