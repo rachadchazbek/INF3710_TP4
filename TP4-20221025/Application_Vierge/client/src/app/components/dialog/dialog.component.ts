@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClientControllerService } from 'src/app/services/client-controller.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class DialogComponent {
   cancelButtonText = "Cancel"
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<DialogComponent>, private controller: ClientControllerService) {
+    private dialogRef: MatDialogRef<DialogComponent>, private controller: ClientControllerService, private snackbar: MatSnackBar) {
       if(this.data){
     this.message = this.data.message || this.message;
     if (data.buttonText) {
@@ -23,18 +24,24 @@ export class DialogComponent {
       }
   }
 
-  onConfirmClick(): void {
+  delete(): void {
     try{
-      console.log("dnjn");
       this.controller.deletePlanrepas(this.data.numeroplan).subscribe();
       this.dialogRef.close(true);
       //TO DO : Open snackbar WORKED:
+      this.openSnackBar("Bien supprimé!", "");
     }
     catch{
       // Open snackbar error
+      this.openSnackBar("Erreur", "Veuillez réessayer de supprimer");
     }
   }
   close(): void {
     this.dialogRef.close();
+}
+openSnackBar(message: string, action: string) {
+  this.snackbar.open(message, action, {
+    duration: 2000,
+  });
 }
 }
