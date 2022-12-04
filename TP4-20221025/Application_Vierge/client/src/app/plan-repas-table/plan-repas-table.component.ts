@@ -43,7 +43,7 @@ export class PlanRepasTableComponent implements OnInit {
         width: '350px',
         data: { numeroplan: numeroplan }
       });
-      updateDialog.afterClosed().subscribe((result) => { this.ngOnInit(); alert(result) ;});
+      updateDialog.afterClosed().subscribe(() => { this.ngOnInit(); });
     }
     catch { }
     
