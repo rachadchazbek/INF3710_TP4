@@ -72,7 +72,7 @@ export class DatabaseService {
   public async createPlanRepas(planrepas: PlanRepas): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
 
-    const values = [planrepas.numeroplan, planrepas.categorie, planrepas.frequence, planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
+    const values = [planrepas.numeroplan, planrepas.categorie, planrepas.frequence.toString().concat(" Fois par semaine"), planrepas.nbrpersonnes, planrepas.nbrcalories, planrepas.prix, planrepas.numerofournisseur];
     const queryText: string = `INSERT INTO Planrepas VALUES($1,$2,$3,$4,$5,$6,$7);`;
     const res = await client.query(queryText, values);
     client.release();
