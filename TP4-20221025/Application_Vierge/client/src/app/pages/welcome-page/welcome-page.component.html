@@ -15,11 +15,16 @@
   
   </div>
 -->
+<mat-toolbar color="primary">
+  <span>INF3710 - TP4</span>
+  <span class="example-spacer"></span>
+  <button routerLink="/welcome" mat-fab>
+      <mat-icon>
+          home
+      </mat-icon>
+  </button>
+</mat-toolbar>
 <div>
-  <nav class="navbar navbar-dark bg-dark main-nav">
-    <a class="navbar-brand title"  matTooltip="Retournez à l'accueil">INF3710 - TP4</a>
-    
-  </nav>
   <mat-grid-list cols="1">
     <mat-grid-tile>
       <mat-card routerLink="/planrepas">
@@ -31,7 +36,7 @@
         <mat-card-content>
           <p class="cit"><cite>Manger bien c'est important!.</cite></p>
           <div class="navbar-expand mr-auto">
-            <button mat-raised-button color="primary" class="button" routerLink="planrepas">Voir les plan repas</button>
+            <button mat-raised-button color="primary" class="add-button" routerLink="planrepas">Voir les plan repas</button>
           </div>
         </mat-card-content>
       </mat-card>
