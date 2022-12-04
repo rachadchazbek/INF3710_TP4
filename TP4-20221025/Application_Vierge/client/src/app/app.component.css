@@ -37,3 +37,16 @@
   font-size: 18px;
   padding: 1%;
 }
+
+#error{
+  color: red;
+}
+
+#hts{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#ht{
+  margin-top: 20px;
+}
