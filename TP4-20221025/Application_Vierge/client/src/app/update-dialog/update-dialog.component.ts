@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Fournisseur, PlanRepas } from 'src/interfaces/planrepas';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { ClientControllerService } from '../services/client-controller.service';
@@ -16,7 +17,7 @@ export class UpdateDialogComponent implements OnInit {
   updatedPlanRepas: PlanRepas;
   initialForm: PlanRepas;
   confirmed: boolean = false;
-  constructor(public dialogRef: MatDialogRef<AddDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private readonly controller: ClientControllerService) { }
+  constructor(public dialogRef: MatDialogRef<AddDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private readonly controller: ClientControllerService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     console.log(this.data.numeroplan);
@@ -42,12 +43,12 @@ export class UpdateDialogComponent implements OnInit {
     this.updatedPlanRepas = new PlanRepas(this.updatedForm.value);
     try {
       this.controller.updatePlanRepas(this.updatedPlanRepas).subscribe();
-      this.dialogRef.close("Successfully updated!")
-      alert("Succesfully updated")
+      this.dialogRef.close();
+      this.openSnackBar("Mise à jour Réussie!", "");
     }
     catch {
-      this.dialogRef.close("Error: Retry to update")
-      alert("Error: Veuillez Reessayer de modifier ")
+      this.dialogRef.close();
+      this.openSnackBar("Erreur:", "Veuillez Reessayer de modifier")
     }
   }
   confirm(): void {
@@ -55,5 +56,10 @@ export class UpdateDialogComponent implements OnInit {
   }
   close(): void {
     this.dialogRef.close();
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackbar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

@@ -30,10 +30,10 @@ export class PlanRepasTableComponent implements OnInit {
   }
   add() {
     try {
-      this.dialog.open(AddDialogComponent, {
+      let addDialog = this.dialog.open(AddDialogComponent, {
         width: '350px',
       });
-      this.ngOnInit();
+      addDialog.afterClosed().subscribe(()=>{this.ngOnInit()});
     }
     catch { }
   }
@@ -43,10 +43,10 @@ export class PlanRepasTableComponent implements OnInit {
         width: '350px',
         data: { numeroplan: numeroplan }
       });
-      updateDialog.afterClosed().subscribe((result) => { alert(result) });
+      updateDialog.afterClosed().subscribe(() => { this.ngOnInit(); });
     }
     catch { }
-    this.ngOnInit();
+    
   }
   delete(numeroplan: string) {
     try {
