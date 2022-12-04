@@ -43,7 +43,7 @@ mat-spinner-color::ng-deep circle {
     stroke: rgb(1, 99, 1) !important;
 }
 
-button {
+.add-button {
     margin: 1rem;
     width: 15%;
 }
@@ -101,4 +101,12 @@ mat-column-action {
 .container {
     font-size: 22px;
     min-width: 80%;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.icon {
+    padding: 0 14px;
 }

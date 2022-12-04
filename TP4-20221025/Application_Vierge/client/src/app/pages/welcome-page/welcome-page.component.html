@@ -15,41 +15,28 @@
   
   </div>
 -->
-<mat-sidenav-container>
-  <div>
-    <nav class="navbar navbar-dark bg-dark main-nav">
-      <a class="navbar-brand title"  matTooltip="Retournez à l'accueil">INF3710 - TP4</a>
-     
-    </nav>
-  
-    <!--
-    <div class="home" >
-      <p>
-        TP4 INF3710
-      </p>
-      
-    </div>
-  -->
-    <mat-grid-list cols="1">
-      <mat-grid-tile>
-        <mat-card routerLink="/planrepas">
-          <mat-card-header>
-            <mat-card-title>Plan Repas </mat-card-title>
-            <mat-card-subtitle>Chercher des plan repas pour votre cuisine!</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://post.healthline.com/wp-content/uploads/2020/09/paleo-diet-meal-plan-and-menu-1200x628-facebook-1200x628.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p class="cit"><cite>Manger bien c'est important!.</cite></p>
-            <div class="navbar-expand mr-auto">
-              <button mat-raised-button color="primary" class="button" routerLink="planrepas">Voir les plan repas</button>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-  
-  </div>
-  
-  </mat-sidenav-container>
+<div>
+  <nav class="navbar navbar-dark bg-dark main-nav">
+    <a class="navbar-brand title"  matTooltip="Retournez à l'accueil">INF3710 - TP4</a>
+    
+  </nav>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-card routerLink="/planrepas">
+        <mat-card-header>
+          <mat-card-title>Plan Repas </mat-card-title>
+          <mat-card-subtitle>Chercher des plan repas pour votre cuisine!</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://post.healthline.com/wp-content/uploads/2020/09/paleo-diet-meal-plan-and-menu-1200x628-facebook-1200x628.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p class="cit"><cite>Manger bien c'est important!.</cite></p>
+          <div class="navbar-expand mr-auto">
+            <button mat-raised-button color="primary" class="button" routerLink="planrepas">Voir les plan repas</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
+</div>
 
