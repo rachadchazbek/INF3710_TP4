@@ -28,13 +28,12 @@ export class PlanRepasTableComponent implements OnInit {
     }
     catch{}
   }
-  add(planRepas: PlanRepas)
+  add()
   {
     try{
       this.dialog.open(AddDialogComponent, {
         width: '350px',
       });
-      this.controller.addPlanrepas(planRepas);
     }
     catch{}
   }
