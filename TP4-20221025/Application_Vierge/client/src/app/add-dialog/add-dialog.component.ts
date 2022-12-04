@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlanRepas } from 'src/interfaces/planrepas';
 import { ClientControllerService } from '../services/client-controller.service';
 
@@ -14,7 +15,7 @@ export class AddDialogComponent implements OnInit {
   newPlanRepas: PlanRepas;
   confirmed: boolean = false;
   numeroPlan:string;
-  constructor(public dialogRef: MatDialogRef<AddDialogComponent>, private readonly controller: ClientControllerService) { }
+  constructor(public dialogRef: MatDialogRef<AddDialogComponent>, private readonly controller: ClientControllerService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     //this.getnumeroPlan().then((num)=>{this.numeroPlan = num});
@@ -66,15 +67,20 @@ export class AddDialogComponent implements OnInit {
     try{
     this.controller.addPlanrepas(this.newPlanRepas).subscribe();
     this.dialogRef.close("Successfully added!")
-    alert("Succesfully Added")
+    this.openSnackBar("Succesfully Added","")
     }
     catch { this.dialogRef.close("Error: Retry to add")
-  alert("Error: Veuillez Reessayer d'ajouter ")}
+  this.openSnackBar("Error: "," Veuillez Reessayer d'ajouter" )}
   }
   confirm(): void{
     this.confirmed = true;
   }
   close(): void {
     this.dialogRef.close();
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackbar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

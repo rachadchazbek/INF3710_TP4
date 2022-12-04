@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 const modules = [
     MatButtonModule,
     MatIconModule,
@@ -47,7 +48,8 @@ const modules = [
     MatSidenavModule,
     MatTooltipModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule
     
 ];
 
