@@ -1,5 +1,5 @@
 <div class="button-container">
-    <button mat-raised-button color="primary" class="button" (click)="add({})"> Ajouter un planrepas</button>
+    <button mat-raised-button color="primary" class="button" (click)="add()"> Ajouter un planrepas</button>
 </div>
 <div *ngIf="allPlanRepas?.length ?? 0 > 0" class="container">
     <table mat-table [dataSource]="allPlanRepas" class="mat-elevation-z8">
