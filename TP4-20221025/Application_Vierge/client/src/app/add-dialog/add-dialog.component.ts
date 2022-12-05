@@ -85,7 +85,7 @@ export class AddDialogComponent implements OnInit {
   }
   openSnackBar(message: string, action: string) {
     this.snackbar.open(message, action, {
-      duration: 2000,
+      duration: 5000,
     });
   }
 }

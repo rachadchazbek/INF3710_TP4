@@ -15,33 +15,33 @@ export class DialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<DialogComponent>, private controller: ClientControllerService, private snackbar: MatSnackBar) {
-      if(this.data){
-    this.message = this.data.message || this.message;
-    if (data.buttonText) {
-      this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
-      this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
-    }
+    if (this.data) {
+      this.message = this.data.message || this.message;
+      if (data.buttonText) {
+        this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
+        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
       }
+    }
   }
 
   delete(): void {
-    try{
+    try {
       this.controller.deletePlanrepas(this.data.numeroplan).subscribe();
       this.dialogRef.close(true);
       //TO DO : Open snackbar WORKED:
       this.openSnackBar("Bien supprimé!", "");
     }
-    catch{
+    catch {
       // Open snackbar error
       this.openSnackBar("Erreur", "Veuillez réessayer de supprimer");
     }
   }
   close(): void {
     this.dialogRef.close();
-}
-openSnackBar(message: string, action: string) {
-  this.snackbar.open(message, action, {
-    duration: 2000,
-  });
-}
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackbar.open(message, action, {
+      duration: 5000,
+    });
+  }
 }
