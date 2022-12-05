@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 
-const DELETE_CONFIRMATION_MESSAGE = 'Est ce que vous êtes sure de supprimer?';
+const DELETE_CONFIRMATION_MESSAGE = 'Est ce que vous êtes sure de supprimer le plan repas ';
 
 @Component({
   selector: 'app-plan-repas-table',
@@ -23,15 +23,16 @@ export class PlanRepasTableComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['numeroplan', 'categorie', 'frequence', 'nbrcalories', 'nbrpersonnes', 'numerofournisseur', 'prix', 'action'];
   allPlanRepas: PlanRepas[] = [];
   dataSource: MatTableDataSource<PlanRepas> = new MatTableDataSource(this.allPlanRepas);
+  dialogOpen: boolean = false;
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.dataSource.sort = sort;
   }
   ngOnInit(): void {
+    this.dialogOpen = false;
     try {
       this.controller.getAllPlanRepas().subscribe((allPlanRepas) => {
         this.allPlanRepas = allPlanRepas;
-        console.log(this.allPlanRepas);
         this.dataSource.data = allPlanRepas;
       });
     }
@@ -44,47 +45,63 @@ export class PlanRepasTableComponent implements OnInit, AfterViewInit {
 
 
   add() {
+    if (this.dialogOpen) return;
+    this.dialogOpen = true;
     try {
       let addDialog = this.dialog.open(AddDialogComponent, {
         width: '420px',
       });
       addDialog.afterClosed().subscribe(() => { this.ngOnInit() });
     }
-    catch { }
+    catch {
+      this.dialogOpen = false;
+    }
   }
   update(numeroplan: string) {
+    if (this.dialogOpen) return;
+    this.dialogOpen = true;
     try {
+      this.dialogOpen = true;
       let updateDialog = this.dialog.open(UpdateDialogComponent, {
         width: '420px',
         data: { numeroplan: numeroplan },
       });
-      updateDialog.afterClosed().subscribe(() => { this.ngOnInit(); });
+      updateDialog.afterClosed().subscribe(() => {
+        this.ngOnInit();
+        this.dialogOpen = false;
+      });
     }
-    catch { }
+    catch {
+      this.dialogOpen = false;
+    }
 
   }
   delete(numeroplan: string) {
+    if (this.dialogOpen) return;
+    this.dialogOpen = true;
     try {
       const deleteDialog = this.dialog.open(DialogComponent, {
         data: {
           numeroplan: numeroplan,
-          message: DELETE_CONFIRMATION_MESSAGE,
+          message: DELETE_CONFIRMATION_MESSAGE + numeroplan + ' ?',
           buttonText: {
             ok: ' Oui',
             cancel: 'Non'
           }
         },
-        width: '350px'
+        width: '420px'
       });
       deleteDialog.afterClosed().subscribe((confirmed: boolean) => {
         if (confirmed) {
           this.controller.deletePlanrepas(numeroplan);
           this.ngOnInit();
+          this.dialogOpen = false;
         }
       });
+    }
+    catch {
 
     }
-    catch { }
   }
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {

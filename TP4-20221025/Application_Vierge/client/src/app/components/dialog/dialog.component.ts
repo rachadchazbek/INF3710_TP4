@@ -37,7 +37,7 @@ export class DialogComponent {
     }
   }
   close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
   openSnackBar(message: string, action: string) {
     this.snackbar.open(message, action, {
