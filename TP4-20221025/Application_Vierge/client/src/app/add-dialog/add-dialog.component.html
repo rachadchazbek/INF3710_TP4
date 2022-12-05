@@ -1,4 +1,5 @@
 <button class="close" mat-button (click)="close()">X</button>
+<h1>Ajouter un Planrepas</h1>
 <p>Veuillez entrer les information ci-dessous:</p>
 
 <form [formGroup]="addForm">
@@ -7,33 +8,40 @@
         <input matInput type="text" id="numeroplan" formControlName="numeroplan" />
     </mat-form-field> -->
     <mat-form-field>
-        <mat-label>Categorie</mat-label>
+        <mat-label>Catégorie</mat-label>
         <input matInput type="text" id="categorie" formControlName="categorie" />
     </mat-form-field>
     <mat-form-field>
-        <mat-label>Frequence</mat-label>
-        <input matInput placeholder = 'Combien de fois par semaine?'type="number" id="frequence" formControlName="frequence" min='1' max='7'/>
+        <mat-label>Fréquence par semaine</mat-label>
+        <input matInput type="text" id="frequence" formControlName="frequence" />
     </mat-form-field>
     <mat-form-field>
-        <mat-label>Nbr Personnes</mat-label>
-        <input matInput type="number" min="0" value="1000" id="nbrpersonnes" formControlName="nbrpersonnes" />
+        <mat-label>Nombre de Personnes</mat-label>
+        <input matInput type="number" min="0" value="1000" id="nbrpersonnes" formControlName="nbrpersonnes"   />
     </mat-form-field>
-     <mat-form-field>
-        <mat-label>Nbr Calories</mat-label>
+    <mat-form-field>
+        <mat-label>Nombre de Calories</mat-label>
         <input matInput type="number" min="0" id="nbrcalories" formControlName="nbrcalories" />
     </mat-form-field>
     <mat-form-field>
         <mat-label>Prix</mat-label>
-        <input matInput type="number" min="0" id="prix" formControlName="prix" />
+        <input matInput type="number"  min="0" id="prix" formControlName="prix" />
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Numéro du Fournisseur</mat-label>
         <mat-select formControlName="numerofournisseur">
             <mat-option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur.numerofournisseur">
                 {{fournisseur.numerofournisseur + ' ' + fournisseur.nomfournisseur}}
             </mat-option>
         </mat-select>
-  
+    </mat-form-field>  
 </form>
 
-<button class="create" mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid" (click)="addPlanRepas()">
-    <mat-icon>add</mat-icon> Ajouter Plan Repas
-</button>
+<div class="button-container">
+    <button class="create" mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid" (click)="addPlanRepas()">
+        <mat-icon>add</mat-icon> Ajouter Plan Repas
+    </button>
+    <button mat-raised-button class="cancel" color="error" (click)="close()">
+        <mat-icon>cancel</mat-icon> Annuler
+    </button>
+</div>
