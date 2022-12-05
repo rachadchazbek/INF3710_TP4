@@ -62,4 +62,8 @@ export class UpdateDialogComponent implements OnInit {
       duration: 2000,
     });
   }
-}
+  onChangeFournisseur(event: any) {
+    this.updatedForm.get('numerofournisseur')?.setValue(event.target.value);
+    console.log(this.updatedForm);
+  }
+};
