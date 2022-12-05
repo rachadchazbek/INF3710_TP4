@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PlanRepas } from 'src/interfaces/planrepas';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { DialogComponent } from '../components/dialog/dialog.component';
-
 import { ClientControllerService } from '../services/client-controller.service';
+
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 
 
@@ -33,20 +33,20 @@ export class PlanRepasTableComponent implements OnInit {
       let addDialog = this.dialog.open(AddDialogComponent, {
         width: '350px',
       });
-      addDialog.afterClosed().subscribe(()=>{this.ngOnInit()});
+      addDialog.afterClosed().subscribe(() => { this.ngOnInit() });
     }
     catch { }
   }
   update(numeroplan: string) {
     try {
       let updateDialog = this.dialog.open(UpdateDialogComponent, {
-        width: '350px',
+        width: '450px',
         data: { numeroplan: numeroplan }
       });
       updateDialog.afterClosed().subscribe(() => { this.ngOnInit(); });
     }
     catch { }
-    
+
   }
   delete(numeroplan: string) {
     try {
