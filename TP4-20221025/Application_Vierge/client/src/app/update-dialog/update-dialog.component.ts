@@ -22,7 +22,6 @@ export class UpdateDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.numeroplan);
     this.controller.getPlanRepas(this.data.numeroplan).subscribe((result: PlanRepas[]) => {
-      console.log(result);
       this.initialForm = new PlanRepas(result[0]);
       this.updatedForm = new FormGroup({
         numeroplan: new FormControl(this.initialForm.numeroplan),
@@ -33,7 +32,6 @@ export class UpdateDialogComponent implements OnInit {
         prix: new FormControl(this.initialForm.prix, [Validators.required]),
         numerofournisseur: new FormControl(this.initialForm.numerofournisseur, [Validators.required, Validators.maxLength(4)])
       });
-      console.log(this.initialForm.numeroplan);
     });
     this.controller.getAllFournisseurs().subscribe((result: Fournisseur[]) => {
       this.fournisseurs = result;
@@ -62,9 +60,5 @@ export class UpdateDialogComponent implements OnInit {
     this.snackbar.open(message, action, {
       duration: 5000,
     });
-  }
-  onChangeFournisseur(event: any) {
-    this.updatedForm.get('numerofournisseur')?.setValue(event.target.value);
-    console.log(this.updatedForm);
   }
 };

@@ -1,48 +1,44 @@
-<div class="container">
-    <form [formGroup]="updatedForm">
-        
-        <!-- <mat-form-field>
-            <mat-label>NumeroPlan</mat-label>
-            <input matInput type="text" id="numeroplan" formControlName="numeroplan" readonly />
-        </mat-form-field> -->
-        <h1>Modification du Planrepas : {{data.numeroplan}}</h1>
-        <mat-form-field>
-            <mat-label>Categorie</mat-label>
-            <input matInput type="text" id="categorie" formControlName="categorie" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Frequence</mat-label>
-            <input matInput type="text" id="frequence" formControlName="frequence" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Nbr Personnes</mat-label>
-            <input matInput type="number" min="0" value="1000" id="nbrpersonnes" formControlName="nbrpersonnes"   />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Nbr Calories</mat-label>
-            <input matInput type="number" min="0" id="nbrcalories" formControlName="nbrcalories" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Prix</mat-label>
-            <input matInput type="number"  min="0" id="prix" formControlName="prix" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-select formControlName="numerofournisseur">
-                <mat-option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur.numerofournisseur">
-                    {{fournisseur.numerofournisseur + ' ' + fournisseur.nomfournisseur}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        
-    
-    </form>
-    <div class="button-container">
-        <button mat-raised-button color="primary"  class="update" type="submit" [disabled]="updatedForm.invalid" (click)="updatePlanRepas()">
-            <mat-icon>update</mat-icon> Modifier Plan Repas
-        </button>
-        <button mat-raised-button class="cancel" color="error" (click)="close()">
-            <mat-icon>cancel</mat-icon> Annuler
-        </button>
-    </div>
+<h1>Modification du Planrepas : {{data.numeroplan}}</h1>
 
+<form [formGroup]="updatedForm">  
+    <!-- <mat-form-field>
+        <mat-label>NumeroPlan</mat-label>
+        <input matInput type="text" id="numeroplan" formControlName="numeroplan" readonly />
+    </mat-form-field> -->
+    <mat-form-field>
+        <mat-label>Catégorie</mat-label>
+        <input matInput type="text" id="categorie" formControlName="categorie" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Fréquence par semaine</mat-label>
+        <input matInput type="text" id="frequence" formControlName="frequence" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Nombre de Personnes</mat-label>
+        <input matInput type="number" min="0" value="1000" id="nbrpersonnes" formControlName="nbrpersonnes"   />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Nombre de Calories</mat-label>
+        <input matInput type="number" min="0" id="nbrcalories" formControlName="nbrcalories" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Prix</mat-label>
+        <input matInput type="number" min="0" id="prix" formControlName="prix" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Numéro du Fournisseur</mat-label>
+        <mat-select formControlName="numerofournisseur">
+            <mat-option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur.numerofournisseur">
+                {{fournisseur.numerofournisseur + ' ' + fournisseur.nomfournisseur}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+<div class="button-container">
+    <button mat-raised-button color="primary"  class="update" type="submit" [disabled]="updatedForm.invalid" (click)="updatePlanRepas()">
+        <mat-icon>update</mat-icon> Modifier Plan Repas
+    </button>
+    <button mat-raised-button class="cancel" color="error" (click)="close()">
+        <mat-icon>cancel</mat-icon> Annuler
+    </button>
 </div>
