@@ -6,3 +6,13 @@
 .add-button {
     width: 15%;
 }
+
+.mat-card {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.mat-grid-list {
+    display: flex;
+    justify-content: center;
+}
