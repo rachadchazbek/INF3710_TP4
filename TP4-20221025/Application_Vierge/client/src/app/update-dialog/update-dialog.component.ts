@@ -41,6 +41,7 @@ export class UpdateDialogComponent implements OnInit {
   }
   updatePlanRepas(): void {
     this.updatedPlanRepas = new PlanRepas(this.updatedForm.value);
+    console.log(this.updatedPlanRepas);
     try {
       this.controller.updatePlanRepas(this.updatedPlanRepas).subscribe();
       this.dialogRef.close();

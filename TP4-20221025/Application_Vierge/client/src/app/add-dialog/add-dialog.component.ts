@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PlanRepas } from 'src/interfaces/planrepas';
+import { Fournisseur, PlanRepas } from 'src/interfaces/planrepas';
 import { ClientControllerService } from '../services/client-controller.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { ClientControllerService } from '../services/client-controller.service';
   styleUrls: ['./add-dialog.component.css']
 })
 export class AddDialogComponent implements OnInit {
+  fournisseurs: Fournisseur[];
   addForm: FormGroup;
   numeroPlan: string;
   newPlanRepas: PlanRepas;
@@ -29,6 +30,9 @@ export class AddDialogComponent implements OnInit {
       nbrcalories: new FormControl([Validators.required]),
       prix: new FormControl([Validators.required]),
       numerofournisseur: new FormControl("", [Validators.required, Validators.maxLength(4)])
+    });
+    this.controller.getAllFournisseurs().subscribe((result: Fournisseur[]) => {
+      this.fournisseurs = result;
     });
   }
   // async getnumeroPlan(): string {

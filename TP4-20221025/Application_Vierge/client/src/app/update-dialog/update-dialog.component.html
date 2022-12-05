@@ -27,7 +27,7 @@
             <input matInput type="number"  min="0" id="prix" formControlName="prix" />
         </mat-form-field>
         <mat-form-field>
-            <mat-select onchange="onChangeFournisseur($event)">
+            <mat-select formControlName="numerofournisseur">
                 <mat-option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur.numerofournisseur">
                     {{fournisseur.numerofournisseur + ' ' + fournisseur.nomfournisseur}}
                 </mat-option>
