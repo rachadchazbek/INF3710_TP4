@@ -23,6 +23,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserModule } from '@angular/platform-browser';
 const modules = [
     MatButtonModule,
     MatIconModule,
@@ -50,6 +51,7 @@ const modules = [
     MatListModule,
     MatToolbarModule,
     MatSnackBarModule,
+    BrowserModule,
 ];
 
 @NgModule({

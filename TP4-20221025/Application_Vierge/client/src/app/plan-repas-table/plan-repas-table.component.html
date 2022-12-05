@@ -15,21 +15,23 @@
     <table>
         <tr>
           <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
-            <p>No Records Found!</p>
+            <p>
+                Aucun planrepas n'a été trouvé.
+            </p>
           </td>
         </tr>
       </table>
 </div>
 
-<div *ngIf="allPlanRepas?.length ?? 0 > 0" class="container">
-    <table mat-table [dataSource]="allPlanRepas" class="mat-elevation-z8">
+<div *ngIf="dataSource.data?.length ?? 0 > 0" class="container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="announceSortChange($event)">
         <ng-container matColumnDef="numeroplan">
-            <th mat-header-cell *matHeaderCellDef>NumeroPlan</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>NumeroPlan</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.numeroplan}}</td>
         </ng-container>
         
         <ng-container matColumnDef="categorie">
-            <th mat-header-cell *matHeaderCellDef>Catégorie</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Catégorie</th>
             <td mat-cell *matCellDef="let planrepas">{{ planrepas.categorie }}</td>
         </ng-container>
         <ng-container matColumnDef="frequence">
