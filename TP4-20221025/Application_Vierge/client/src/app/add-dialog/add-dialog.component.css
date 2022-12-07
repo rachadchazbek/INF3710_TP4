@@ -19,3 +19,11 @@ mat-form-field {
   justify-content: space-between;
   width: 100%;
 }
+
+::ng-deep .success-message {
+  background-color: green;
+}
+
+::ng-deep .error-message {
+  background: red;
+}

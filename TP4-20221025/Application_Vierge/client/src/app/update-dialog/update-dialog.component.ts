@@ -55,7 +55,7 @@ export class UpdateDialogComponent implements OnInit {
     }
     catch {
       this.dialogRef.close();
-      this.openSnackBar("Erreur:", "Veuillez Reessayer de modifier")
+      this.openSnackBar("Erreur:", "Veuillez Reessayer de modifier", "error-message")
     }
   }
   confirm(): void {
@@ -64,9 +64,11 @@ export class UpdateDialogComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string, className: string = "success-message") {
     this.snackbar.open(message, action, {
       duration: 5000,
+      panelClass: [className]
     });
+
   }
 };

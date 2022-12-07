@@ -12,13 +12,29 @@
 <mat-toolbar color="primary">
   <span>INF3710 - TP4</span>
   <span class="example-spacer"></span>
+  <span></span>
+  <button (click)="goToGithub()" mat-fab>
+      <mat-icon>
+          code
+      </mat-icon>
+  </button>
   <button routerLink="/welcome" mat-fab>
       <mat-icon>
           home
       </mat-icon>
   </button>
 </mat-toolbar>
-  <mat-grid-list id="grid" cols="1">
+  <div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Bienvenue à notre site Web! </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        
+        <p><cite>Ce site est construit par <b>Rachad Chazbek et Ahmed Sidi</b>  dans le cadre du cours INF3710: Fichiers et bases de données</cite></p>
+      </mat-card-content>
+    </mat-card>
       <mat-card routerLink="/planrepas">
         <mat-card-header>
           <mat-card-title>Plan Repas </mat-card-title>
@@ -32,4 +48,4 @@
           </div>
         </mat-card-content>
       </mat-card>
-  </mat-grid-list>
+    </div>

@@ -110,4 +110,8 @@ export class PlanRepasTableComponent implements OnInit, AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  goToGithub() {
+    window.open("https://github.com/rachadchazbek/INF3710_TP4", '_blank');
+  }
 }

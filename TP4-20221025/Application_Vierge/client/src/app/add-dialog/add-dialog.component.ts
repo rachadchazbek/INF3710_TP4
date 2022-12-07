@@ -37,12 +37,12 @@ export class AddDialogComponent implements OnInit {
     this.newPlanRepas.frequence = this.addForm.value.frequence + " fois par semaine";
     try {
       this.controller.addPlanrepas(this.newPlanRepas).subscribe();
-      this.dialogRef.close("Successfully added!")
-      this.openSnackBar("Succesfully Added", "")
+      this.dialogRef.close("Ajouter avec succes!")
+      this.openSnackBar("Ajouter avec succes!", "")
     }
     catch {
       this.dialogRef.close("Error: Retry to add")
-      this.openSnackBar("Error: ", " Veuillez Reessayer d'ajouter")
+      this.openSnackBar("Error: ", " Veuillez Reessayer d'ajouter", "error-message")
     }
   }
   confirm(): void {
@@ -51,9 +51,10 @@ export class AddDialogComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string, className: string = "success-message") {
     this.snackbar.open(message, action, {
       duration: 5000,
+      panelClass: [className]
     });
   }
 }

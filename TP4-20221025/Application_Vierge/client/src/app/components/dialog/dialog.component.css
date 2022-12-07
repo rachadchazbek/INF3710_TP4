@@ -9,3 +9,11 @@
     line-height: 14px;
     min-width: auto;
   }
+
+  ::ng-deep .error-message {
+    background: red;
+ }
+
+ ::ng-deep .success-message{
+  background: green;
+}

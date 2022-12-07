@@ -11,4 +11,8 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  goToGithub() {
+    window.open("https://github.com/rachadchazbek/INF3710_TP4", '_blank');
+  }
 }

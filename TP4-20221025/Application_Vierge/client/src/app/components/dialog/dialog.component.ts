@@ -29,19 +29,21 @@ export class DialogComponent {
       this.controller.deletePlanrepas(this.data.numeroplan).subscribe();
       this.dialogRef.close(true);
       //TO DO : Open snackbar WORKED:
-      this.openSnackBar("Bien supprimé!", "");
+      this.openSnackBar("Planrepas supprimé!", "");
     }
     catch {
       // Open snackbar error
-      this.openSnackBar("Erreur", "Veuillez réessayer de supprimer");
+      this.openSnackBar("Erreur", "Veuillez réessayer de supprimer", "error-message");
     }
   }
   close(): void {
     this.dialogRef.close(true);
   }
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string, color: string = "success-message") {
     this.snackbar.open(message, action, {
       duration: 5000,
+      panelClass: [color]
+
     });
   }
 }
