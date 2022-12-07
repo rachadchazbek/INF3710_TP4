@@ -19,8 +19,6 @@ export class AddDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AddDialogComponent>, private readonly controller: ClientControllerService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.controller.getPlanRepas("P00").subscribe((result) => { console.log(result) });
-    console.log(this.numeroPlan);
     this.addForm = new FormGroup({
       numeroplan: new FormControl(""),
       categorie: new FormControl("", [Validators.required, Validators.maxLength(20)]),
@@ -36,6 +34,7 @@ export class AddDialogComponent implements OnInit {
   }
   addPlanRepas(): void {
     this.newPlanRepas = new PlanRepas(this.addForm.value);
+    this.newPlanRepas.frequence = this.addForm.value.frequence + " fois par semaine";
     try {
       this.controller.addPlanrepas(this.newPlanRepas).subscribe();
       this.dialogRef.close("Successfully added!")

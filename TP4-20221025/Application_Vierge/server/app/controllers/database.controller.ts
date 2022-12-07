@@ -32,7 +32,6 @@ export class DatabaseController {
     });
 
     this.router.get('/fournisseurs', async (req, res) => {
-      console.log("test");
       try {
         const allFournisseurs = await this.databaseService.getAllFournisseurs();
         console.log(allFournisseurs);
